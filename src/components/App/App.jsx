@@ -22,6 +22,9 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 
+// Mantine UI 
+import { Text } from '@mantine/core';
+
 function App() {
   const dispatch = useDispatch();
 
@@ -32,6 +35,7 @@ function App() {
   }, [dispatch]);
 
   return (
+
     <Router>
       <div>
         <Nav />
