@@ -1,23 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 
-import store from './redux/store';
+import store from "./redux/store";
 
-import App from './components/App/App';
+import App from "./components/App/App";
 
-// Mantine UI 
-import { MantineProvider } from '@mantine/core';
+// Mantine UI
+import { MantineProvider } from "@mantine/core";
 
-const root = ReactDOM.createRoot(document.getElementById('react-root'));
+const root = ReactDOM.createRoot(document.getElementById("react-root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <MantineProvider withGlobalStyles withNormalizeCSS 
-      theme={{
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{
           // Override any other properties from default theme
-          fontFamily: 'New York',
-          spacing: { xs: '1rem', sm: '1.2rem', md: '1.8rem', lg: '2.2rem', xl: '2.8rem' },
+          colorScheme: "dark",
+          fontFamily: "New York",
+          spacing: {
+            xs: "1rem",
+            sm: "1.2rem",
+            md: "1.8rem",
+            lg: "2.2rem",
+            xl: "2.8rem",
+          },
         }}
       >
         <App />

@@ -1,44 +1,49 @@
-import { useHistory } from 'react-router-dom'
-import { SimpleGrid, Button, Image, Container, Center, Card, Text } from "@mantine/core";
-
-
+import { useHistory } from "react-router-dom";
+import {
+  SimpleGrid,
+  Button,
+  Image,
+  Container,
+  Center,
+  Card,
+  Text,
+} from "@mantine/core";
 
 function MantineDemo() {
-  const history = useHistory()
+  const history = useHistory();
   return (
-    <>
     <Container>
       <SimpleGrid cols={2}>
-        <Card>
-          <Text>Mantine 1</Text>
+        <Card withBorder padding="sm">
+          <Text fz="sm" fw={700}>
+            Jack Frost
+          </Text>
           <Image
-            src="https://static.pokemonpets.com/images/monsters-images-300-300/2226-Shiny-Mantine.webp"
-            alt="Mantine"
+            src="https://static.wikia.nocookie.net/megamitensei/images/b/b7/P5X_Jack_Frost.png"
+            alt="jackFrost"
           />
         </Card>
-
-        <Card>
-          <Text>Mantine 2</Text>
+        <Card withBorder padding="sm">
+          <Text fz="sm" fw={700}>
+            Black Frost
+          </Text>
           <Image
-            src="https://static.pokemonpets.com/images/monsters-images-300-300/2226-Shiny-Mantine.webp"
-            alt="Mantine"
+            src="https://static.wikia.nocookie.net/megamitensei/images/c/c4/Black_Frost_Dx2.png"
+            alt="blackFrost"
           />
         </Card>
       </SimpleGrid>
       <Center>
-      <button
-          type="button"
-          className="btn btn_asLink"
+        <Button
           onClick={() => {
-            history.push('/result');
+            history.push("/result");
           }}
         >
-          F U S E
-        </button> 
+          Fuse
+        </Button>
       </Center>
     </Container>
-
-    </>
   );
 }
+
 export default MantineDemo;
