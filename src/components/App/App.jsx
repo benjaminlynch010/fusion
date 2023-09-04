@@ -19,11 +19,10 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import MantineDemo from '../MantineDemo/MantineDemo'
 
 import './App.css';
 
-// Mantine UI 
-import { Text } from '@mantine/core';
 
 function App() {
   const dispatch = useDispatch();
@@ -69,7 +68,7 @@ function App() {
             exact
             path="/info"
           >
-            <InfoPage />
+            <MantineDemo />
           </ProtectedRoute>
 
           <Route
