@@ -20,8 +20,10 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import MantineDemo from '../MantineDemo/MantineDemo'
+import FusionResult from '../FusionResult/FusionResult';
 
 import './App.css';
+
 
 
 function App() {
@@ -63,13 +65,20 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
+          <Route
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/info"
           >
             <MantineDemo />
-          </ProtectedRoute>
+          </Route>
+
+          <Route
+            path="/result"
+          >
+            <FusionResult />
+          </Route>
+          
 
           <Route
             exact
