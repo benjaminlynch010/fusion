@@ -7,6 +7,7 @@ function MantineDemo() {
     <Container>
       <SimpleGrid cols={2}>
         <Card>
+          <Text>Mantine 1</Text>
           <Image
             src="https://static.pokemonpets.com/images/monsters-images-300-300/2226-Shiny-Mantine.webp"
             alt="Mantine"
@@ -14,6 +15,7 @@ function MantineDemo() {
         </Card>
 
         <Card>
+          <Text>Mantine 2</Text>
           <Image
             src="https://static.pokemonpets.com/images/monsters-images-300-300/2226-Shiny-Mantine.webp"
             alt="Mantine"
@@ -24,7 +26,7 @@ function MantineDemo() {
         <Button >F U S E</Button>  
       </Center>
     </Container>
-      
+
     </>
   );
 }
