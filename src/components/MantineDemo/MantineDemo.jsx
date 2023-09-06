@@ -13,8 +13,8 @@ function MantineDemo() {
   const history = useHistory();
   return (
     <Container>
-      <SimpleGrid cols={2}>
-        <Card withBorder padding="sm">
+      <SimpleGrid cols={2} verticalSpacing="lg">
+        <Card withBorder>
           <Text fz="sm" fw={700}>
             Jack Frost
           </Text>
@@ -23,7 +23,7 @@ function MantineDemo() {
             alt="jackFrost"
           />
         </Card>
-        <Card withBorder padding="sm">
+        <Card withBorder>
           <Text fz="sm" fw={700}>
             Black Frost
           </Text>
@@ -35,6 +35,7 @@ function MantineDemo() {
       </SimpleGrid>
       <Center>
         <Button
+        fullWidth
           onClick={() => {
             history.push("/result");
           }}

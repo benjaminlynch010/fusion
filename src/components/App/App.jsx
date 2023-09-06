@@ -15,7 +15,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -23,8 +22,6 @@ import MantineDemo from '../MantineDemo/MantineDemo'
 import FusionResult from '../FusionResult/FusionResult';
 
 import './App.css';
-
-
 
 function App() {
   const dispatch = useDispatch();
