@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Nav from '../Nav/Nav'
+
 
 // Mantine
 import {
@@ -16,8 +16,9 @@ import {
 function PartyPage(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
-   const [heading, setHeading] = useState('Functional Personas');
-
+  
+  const user = useSelector((store) => store.user)
+  const [heading, setHeading] = useState(`${user.username}'s Party`);
   const personas = useSelector((store) => store.personas);
 
   const dispatch = useDispatch();
