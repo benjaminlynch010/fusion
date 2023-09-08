@@ -1,34 +1,40 @@
-const express = require('express');
-const pool = require('../modules/pool');
+const express = require("express");
+const pool = require("../modules/pool");
 const router = express.Router();
 
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   // GET route code here
-  router.get('/', (req, res) => {
-    // GET route code here
-    console.log('Getting Party')
-    const queryText = `SELECT personas.id, personas.name, personas.race, personas.lvl FROM personas
-    JOIN party ON personas.id = party.persona_id
-    ORDER BY personas.lvl ASC;
-    `
-    pool.query(queryText)
+  console.log("Getting Party");
+  const queryText = `
+  SELECT * FROM personas
+  JOIN party ON personas.id = party.persona_id
+  ORDER BY personas.lvl ASC;`;
+  pool.query(queryText)
     .then((result) => {
-      res.send(result.rows)
+      res.send(result.rows);
     })
     .catch((error) => {
-      res.sendStatus(500)
-    })
-  });
+      res.sendStatus(500);
+    });
 });
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
+// POST persona to party
+router.post("/add", (req, res) => {
+  console.log(req.body)
+  const personaID = req.body.id
+  const queryText = `
+  INSERT INTO party (persona_id)
+  VALUES ($1);
+  `
+  pool.query(queryText, [personaID])
+  .then(() => res.sendStatus(201))
+  .catch((err) => {
+    console.log(`Cannot add to party ${err}`);
+    res.sendStatus(500);
+  });
 });
 
 module.exports = router;

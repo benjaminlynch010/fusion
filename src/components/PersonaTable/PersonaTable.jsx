@@ -24,13 +24,16 @@ function PersonaTable(props) {
     dispatch({ type: 'FETCH_PERSONAS' });
   }, [dispatch]);
 
+  const handleClick = (persona) => {
+    dispatch({ type: 'ADD_TO_PARTY', payload: persona })
+  }
 
     const rows = personas.map((persona) => (
       <tr key={persona.id}>
         <td>{persona.lvl}</td>
         <td>{persona.race}</td>
         <td>{persona.name}</td>
-        <td><Button>Add</Button></td>
+        <td><Button onClick={() => handleClick(persona)}>Add</Button></td>
       </tr>
     ));
 
