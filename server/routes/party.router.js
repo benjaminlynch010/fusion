@@ -9,11 +9,11 @@ router.get('/', (req, res) => {
   // GET route code here
   router.get('/', (req, res) => {
     // GET route code here
-    console.log('Getting Party List')
-    const queryText = `
-    SELECT * FROM party
-    ` 
-    // JOIN ON user.id WHERE party.user_id = user.id
+    console.log('Getting Party')
+    const queryText = `SELECT personas.id, personas.name, personas.race, personas.lvl FROM personas
+    JOIN party ON personas.id = party.persona_id
+    ORDER BY personas.lvl ASC;
+    `
     pool.query(queryText)
     .then((result) => {
       res.send(result.rows)

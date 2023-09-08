@@ -5,8 +5,6 @@ import './LandingPage.css';
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 
-// Mantine
-import { Text } from '@mantine/core'
 
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');

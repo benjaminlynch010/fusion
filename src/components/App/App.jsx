@@ -19,7 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import PartyPage from '../PartyPage/PartyPage'
+import PersonaTable from '../PersonaTable/PersonaTable'
 
 import './App.css';
 
@@ -78,7 +78,7 @@ function App() {
             exact
             path="/party"
           >
-            <PartyPage />
+            <PersonaTable />
           </Route>
 
           <Route

@@ -9,9 +9,8 @@ router.get('/', (req, res) => {
   // GET route code here
   console.log('Getting Persona List')
   const queryText = `
-  SELECT personas.name, personas.race, personas.lvl FROM personas
-  JOIN party ON personas.id = party.persona_id
-  ORDER BY personas.lvl ASC;
+  SELECT * FROM personas
+  ORDER BY personas.name ASC;
   `
   pool.query(queryText)
   .then((result) => {
