@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import PersonaTable from '../PersonaTable/PersonaTable'
 
 import './App.css';
 
@@ -71,6 +72,14 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
+
+          <Route
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/party"
+          >
+            <PersonaTable />
+          </Route>
 
           <Route
             exact

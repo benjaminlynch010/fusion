@@ -8,7 +8,10 @@ const router = express.Router();
 router.get('/', (req, res) => {
   // GET route code here
   console.log('Getting Persona List')
-  const queryText = `SELECT "name", "lvl" FROM personas ORDER BY name ASC`
+  const queryText = `
+  SELECT * FROM personas
+  ORDER BY personas.name ASC;
+  `
   pool.query(queryText)
   .then((result) => {
     res.send(result.rows)
