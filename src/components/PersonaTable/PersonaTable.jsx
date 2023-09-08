@@ -18,6 +18,7 @@ function PersonaTable(props) {
 
   const [heading, setHeading] = useState(`Personas`);
   const personas = useSelector((store) => store.personas);
+  const party = useSelector((store) => store.party)
 
   const dispatch = useDispatch();
   useEffect(() => {
