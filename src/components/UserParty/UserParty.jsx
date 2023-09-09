@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // Mantine
 import {
-  ActionIcon, Button, Table
+  ActionIcon, Container, Flex, Table, Text
  } from '@mantine/core'
- import { IconTrash } from '@tabler/icons-react';
+ import { IconTrash, IconListDetails } from '@tabler/icons-react';
  
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -32,6 +32,11 @@ function UserParty(props) {
       <td>{persona.name}</td>
       <td>{persona.race}</td>
       <td>
+        <ActionIcon>
+          <IconListDetails />
+        </ActionIcon>
+      </td>
+      <td>
         <ActionIcon onClick={() => handleClick(persona)}>
           <IconTrash size="1.125rem" />
         </ActionIcon>
@@ -40,21 +45,21 @@ function UserParty(props) {
   ));
 
   return (
-    <div>
-      <h2>{heading}</h2>
-
+<Container>
+      <Text fz='xl'>{heading}</Text>
       <Table striped highlightOnHover>
-      <thead>
-        <tr>
-          <th>Level</th>
-          <th>Name</th>
-          <th>Arcana</th>
-          <th>Remove</th>
-        </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </Table>
-    </div>
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>Name</th>
+            <th>Arcana</th>
+            <th>Details</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </Table>
+</Container>
   );
 }
 

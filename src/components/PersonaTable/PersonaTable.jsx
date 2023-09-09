@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // Mantine
 import {
-  Autocomplete, Button, Flex, Table
+  Autocomplete, Button, Container, Flex, Table
  } from '@mantine/core'
 
 
@@ -40,8 +40,8 @@ function PersonaTable(props) {
     ));
 
   return (
-    <div>
-      <h2>{heading}</h2>
+    <Container>
+      <Text>{heading}</Text>
       <Flex
       mih={50}
       gap="xs"
@@ -73,7 +73,7 @@ function PersonaTable(props) {
       </thead>
       <tbody>{rows}</tbody>
     </Table>
-    </div>
+    </Container>
   );
 }
 
