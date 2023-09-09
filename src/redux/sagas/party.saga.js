@@ -24,6 +24,7 @@ function* deleteFromParty(action) {
   console.log(`removing ${action.payload.name} from party`)
   try {
     yield axios.delete(`/api/party/del/${action.payload.id}`)
+    yield put({ type: 'FETCH_PARTY' })
   } catch (err) {
     console.log('Cannot delete Persona', err)
   }

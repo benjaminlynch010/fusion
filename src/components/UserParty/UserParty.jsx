@@ -23,7 +23,6 @@ function UserParty(props) {
 
   const handleClick = (persona) => {
     dispatch({ type: 'DELETE_FROM_PARTY', payload: persona })
-    dispatch({ type: 'FETCH_PARTY' })
   }
 
   const rows = party.map((persona) => (

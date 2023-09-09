@@ -27,6 +27,7 @@ function PersonaTable(props) {
 
   const handleClick = (persona) => {
     dispatch({ type: 'ADD_TO_PARTY', payload: persona })
+    dispatch({ type: 'FETCH_PERSONAS'})
   }
 
     const rows = personas.map((persona) => (
