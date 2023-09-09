@@ -1,0 +1,15 @@
+1. Ingredient A x Ingredient B = ?
+    * Consult the game's corresponding demon list to obtain each ingredient's race and base level
+2. Determine Race R
+    * Consult the game's corresponding normal fusion chart
+    * Find the row that starts or ends with Race A
+    * Find the column that starts or ends with Race B
+    * Race R = Intersection of the two
+    * If Race R = None, the fusion is invalid
+    * For Persona series only: Intersection must lie in upper-right half of chart, if it does not, flip Race A and Race B
+3. Determine Result R
+    * Consult the game's corresponding demon list
+    * Level R = Math.floor((Base Level A + Base Level B) / 2) + Game-specific Normal Level Modifier
+    * Result R = Next-highest non-special result (neither red nor green) with Race R with base level >= Level R
+    * If Level R > All non-special results with Race R, the fusion is invalid
+4. Ingredient A x Ingredient B = Result R
