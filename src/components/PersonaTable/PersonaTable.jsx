@@ -18,7 +18,7 @@ function PersonaTable(props) {
 
   const [heading, setHeading] = useState(`Personas`);
   const personas = useSelector((store) => store.personas);
-  const party = useSelector((store) => store.party)
+
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -32,8 +32,8 @@ function PersonaTable(props) {
     const rows = personas.map((persona) => (
       <tr key={persona.id}>
         <td>{persona.lvl}</td>
-        <td>{persona.race}</td>
         <td>{persona.name}</td>
+        <td>{persona.race}</td>
         <td><Button onClick={() => handleClick(persona)}>Add</Button></td>
       </tr>
     ));
@@ -65,8 +65,8 @@ function PersonaTable(props) {
       <thead>
         <tr>
           <th>Level</th>
-          <th>Arcana</th>
           <th>Name</th>
+          <th>Arcana</th>
           <th>Add to Party</th>
         </tr>
       </thead>

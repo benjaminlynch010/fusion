@@ -37,4 +37,18 @@ router.post("/add", (req, res) => {
   });
 });
 
+// DELETE persona from party
+router.delete("/del/:id", (req, res) => {
+  console.log(req.params.id)
+  const personaID = req.params.id
+  const queryText = `
+  DELETE FROM party WHERE id=$1;
+  `
+  pool.query(queryText, [personaID])
+  .then(() => res.sendStatus(201))
+  .catch((err) => {
+    console.log(`Cannot remove from party ${err}`);
+    res.sendStatus(500);
+  });  
+})
 module.exports = router;

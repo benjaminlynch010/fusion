@@ -6,7 +6,8 @@ function* fetchPersonas() {
     const response = yield axios.get('/api/personas')
 
     yield put({ type: 'SET_PERSONAS', payload: response.data })
-  } catch (err) {
+  } 
+  catch (err) {
     console.log('Cannot retrieve Personas.', err)
   }
 }
