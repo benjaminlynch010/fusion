@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
+import HeroLoop from '../HeroLoop/HeroLoop'
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
-
 
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
@@ -14,8 +14,11 @@ function LandingPage() {
     history.push('/login');
   };
 
+ 
+
   return (
     <div className="container">
+      <HeroLoop />
       <h2>{heading}</h2>
 
       <div className="grid">

@@ -20,11 +20,9 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import PersonaTable from '../PersonaTable/PersonaTable'
+import UserParty from '../UserParty/UserParty';
 
 import './App.css';
-
-// Mantine UI 
-import { Text } from '@mantine/core';
 
 function App() {
   const dispatch = useDispatch();
@@ -74,11 +72,17 @@ function App() {
           </ProtectedRoute>
 
           <Route
-            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/table"
+          >
+            <PersonaTable />
+          </Route>
+
+          <Route
             exact
             path="/party"
           >
-            <PersonaTable />
+            <UserParty />
           </Route>
 
           <Route

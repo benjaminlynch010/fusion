@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { IconCheck, IconX } from '@tabler/icons-react';
 
 
 // Mantine
 import {
-  Autocomplete, Button, Flex, Table
+  Button, Container, Flex, MultiSelect, Table, Text
  } from '@mantine/core'
-
+import { notifications } from '@mantine/notifications'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -19,6 +20,7 @@ function PersonaTable(props) {
   const [heading, setHeading] = useState(`Personas`);
   const personas = useSelector((store) => store.personas);
 
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({ type: 'FETCH_PERSONAS' });
@@ -26,20 +28,28 @@ function PersonaTable(props) {
 
   const handleClick = (persona) => {
     dispatch({ type: 'ADD_TO_PARTY', payload: persona })
+    notifications.show({
+      title: 'Nice Click!',
+      message: 'Added to party',
+      color: 'pink',
+      icon: <IconCheck />,
+      autoClose: 5000,
+    })
+    dispatch({ type: 'FETCH_PERSONAS'})
   }
 
     const rows = personas.map((persona) => (
       <tr key={persona.id}>
         <td>{persona.lvl}</td>
-        <td>{persona.race}</td>
         <td>{persona.name}</td>
+        <td>{persona.race}</td>
         <td><Button onClick={() => handleClick(persona)}>Add</Button></td>
       </tr>
     ));
 
   return (
-    <div>
-      <h2>{heading}</h2>
+    <Container>
+      <Text>{heading}</Text>
       <Flex
       mih={50}
       gap="xs"
@@ -48,30 +58,33 @@ function PersonaTable(props) {
       direction="row"
       wrap="wrap"
     >
-        <Autocomplete
-          placeholder="Narrow Results"
-          data=
-          {[
-            'Chariot', 'Death', 'Devil', 'Emperor', 'Empress', 'Fool', 
-            'Fortune', 'Hanged', 'Hermit', 'Hierophant', 'Judgement', 
-            'Justice', 'Lovers', 'Magician', 'Moon', 'Preistess', 
-            'Star', 'Strength', 'Sun', 'Temperance', 'Tower'
-          ]}
-        />
-        <Button>Sort</Button>
+          <MultiSelect
+      data={[
+        'Chariot', 'Death', 'Devil', 'Emperor', 'Empress', 'Fool', 
+        'Fortune', 'Hanged', 'Hermit', 'Hierophant', 'Judgement', 
+        'Justice', 'Lovers', 'Magician', 'Moon', 'Preistess', 
+        'Star', 'Strength', 'Sun', 'Temperance', 'Tower'
+      ]}
+      label="Narrow Results"
+      placeholder="Select Arcana"
+      clearButtonProps={{ 'aria-label': 'Clear selection' }}
+      clearable
+      searchable
+    />
+      <Button>Sort</Button>
       </Flex>
     <Table striped highlightOnHover>
       <thead>
         <tr>
           <th>Level</th>
-          <th>Arcana</th>
           <th>Name</th>
+          <th>Arcana</th>
           <th>Add to Party</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>
     </Table>
-    </div>
+    </Container>
   );
 }
 
