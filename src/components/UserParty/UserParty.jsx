@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // Mantine
 import {
-  Autocomplete, Button, Flex, Table
+  ActionIcon, Button, Table
  } from '@mantine/core'
-
+ import { IconTrash } from '@tabler/icons-react';
+ 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
@@ -30,7 +31,11 @@ function UserParty(props) {
       <td>{persona.lvl}</td>
       <td>{persona.name}</td>
       <td>{persona.race}</td>
-      <td><Button onClick={() => handleClick(persona)}>Trash</Button></td>
+      <td>
+        <ActionIcon onClick={() => handleClick(persona)}>
+          <IconTrash size="1.125rem" />
+        </ActionIcon>
+      </td>
     </tr>
   ));
 
