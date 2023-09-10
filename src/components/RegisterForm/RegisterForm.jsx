@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+// Mantine
+import { Container, Center, Card, TextInput, Title, Button, SimpleGrid } from '@mantine/core'
+
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +24,7 @@ function RegisterForm() {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+      <Title order={2}>Register User</Title>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
@@ -30,7 +33,7 @@ function RegisterForm() {
       <div>
         <label htmlFor="username">
           Username:
-          <input
+          <TextInput
             type="text"
             name="username"
             value={username}
@@ -42,7 +45,7 @@ function RegisterForm() {
       <div>
         <label htmlFor="password">
           Password:
-          <input
+          <TextInput
             type="password"
             name="password"
             value={password}
@@ -52,7 +55,7 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <Button type="submit" name="submit" value="Register">Register</Button>
       </div>
     </form>
   );
