@@ -50,6 +50,7 @@ console.log('average', levelResult)
 
 function getFusionArcana(arc1, arc2) {
     if (arc1 < arc2 || arc1 == arc2) {
+      // array sort method instead of conditional?
       return table[arc1][arc2]
     }
     if (arc1 > arc2) {
