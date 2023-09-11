@@ -21,6 +21,22 @@ router.get('/', (req, res) => {
   })
 });
 
+router.post('/fusion/', (req, res) => {
+  // GET route code here
+  console.log('fusing in db, req.body: ', req.body)
+  
+  const queryText = `
+  SELECT * FROM personas
+  ORDER BY personas.name ASC;
+  `
+  pool.query(queryText)
+  .then((result) => {
+    res.send(result.rows)
+  })
+  .catch((error) => {
+    res.sendStatus(500)
+  })
+});
 /**
  * POST route template
  */

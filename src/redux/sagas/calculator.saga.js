@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* fusionCalculator(action) {
+function* arcanaCalculator(action) {
    
   let arcanaInput = [
     "Fool",       "Magician",   "Priestess",  "Empress",    "Emperor",    "Hierophant", "Lovers",     "Chariot",    "Justice",    "Hermit",     "Fortune",    "Strength",   "Hanged",     "Death",      "Temperance", "Devil",      "Tower",      "Star",       "Moon",       "Sun",        "Judgement"
@@ -31,6 +31,15 @@ function* fusionCalculator(action) {
     ["Star",       "Tower",      "Justice",    "Devil",      "Hierophant", "Lovers",     "Sun",        "Tower",      "Hermit",     "Tower",      "Star",       "Hanged",     "Tower",      "Devil",      "Moon",       "Moon",       "Sun",        "Temperance", "Priestess",  "Star",       "Judgement"]
   ]
 
+const levelOne = action.payload.personaOne.lvl
+console.log('first current level', levelOne)
+
+const levelTwo = action.payload.personaTwo.lvl
+console.log('second current level', levelTwo)
+
+const levelResult = Math.floor((levelOne + levelTwo + 1)/2)
+console.log('average', levelResult)
+
   const arcanaOne = action.payload.personaOne.race
   const arcanaTwo = action.payload.personaTwo.race
 
@@ -50,12 +59,23 @@ function getFusionArcana(arc1, arc2) {
 
   const arcanaResult = getFusionArcana(indexOne, indexTwo)
   console.log(arcanaResult)
+  console.log(levelResult)
+  
+  const fusionQuery = {
+    arcana: arcanaResult,
+    level: levelResult,
+  }
+
+  console.log(`adding ${fusionQuery} for fusion`)
+  try {
+    yield axios.post('/api/personas/fusion', fusionQuery)
+  } catch (err) {
+    console.log('Cannot add new Persona', err)
+  }
 }
 
-
-
 function* calculatorSaga() {
-  yield takeLatest('FUSE', fusionCalculator)
+  yield takeLatest('FUSE', arcanaCalculator)
 }
 
 export default calculatorSaga
