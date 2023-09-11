@@ -1,12 +1,12 @@
-import React from "react";
+import axios from 'axios';
+import { put, takeLatest } from 'redux-saga/effects';
 
-
-function Calculator(personaOne, personaTwo) {
-  
-  let arcana = [
+function* fusionCalculator(action) {
+   
+  let arcanaInput = [
     "Fool",       "Magician",   "Priestess",  "Empress",    "Emperor",    "Hierophant", "Lovers",     "Chariot",    "Justice",    "Hermit",     "Fortune",    "Strength",   "Hanged",     "Death",      "Temperance", "Devil",      "Tower",      "Star",       "Moon",       "Sun",        "Judgement"
   ]
-  
+
   let table = [
     ["Fool",       "Hierophant", "Justice",    "Fortune",    "Chariot",    "Hermit",     "Priestess",  "Magician",   "Chariot",    "Priestess",  "Justice",    "Hanged",     "Magician",   "Strength",   "Hierophant", "Hermit",     "Moon",       "Priestess",  "Fortune",    "Empress",    "Star"],
     ["Emperor",    "Magician",   "Hierophant", "Hanged",     "Temperance", "Hermit",     "Emperor",    "Devil",      "Emperor",    "Chariot",    "Emperor",    "-",          "Devil",      "-",          "Death",      "Temperance", "Empress",    "Empress",    "Priestess",  "Lovers",     "-"],
@@ -31,28 +31,31 @@ function Calculator(personaOne, personaTwo) {
     ["Star",       "Tower",      "Justice",    "Devil",      "Hierophant", "Lovers",     "Sun",        "Tower",      "Hermit",     "Tower",      "Star",       "Hanged",     "Tower",      "Devil",      "Moon",       "Moon",       "Sun",        "Temperance", "Priestess",  "Star",       "Judgement"]
   ]
 
-  const arcanaResult = (personaOne, personaTwo) => { 
-    console.log(personaOne, arcana.indexOf(personaOne))
-    console.log(personaTwo, arcana.indexOf(personaTwo))
-    
-    if (arcana.indexOf(personaOne) < arcana.indexOf(personaTwo)) {
-      base = arcana.indexOf(personaOne)
-      material = arcana.indexOf(personaTwo)
-    } 
-    if (arcana.indexOf(personaOne) > arcana.indexOf(personaTwo)) {
-      base = arcana.indexOf(personaTwo)
-      material = arcana.indexOf(personaOne)
+  const arcanaOne = action.payload.personaOne.race
+  const arcanaTwo = action.payload.personaTwo.race
+
+  const indexOne = arcanaInput.indexOf(arcanaOne)
+  console.log(indexOne)
+  const indexTwo = arcanaInput.indexOf(arcanaTwo)
+  console.log(indexTwo)
+
+function getFusionArcana(arc1, arc2) {
+    if (arc1 < arc2 || arc1 == arc2) {
+      return table[arc1][arc2]
     }
-    return (base, material)
+    if (arc1 > arc2) {
+      return table[arc2][arc1]
+    }
   }
 
-  console.log('base: ', base)
-  console.log('material: ', material)
-  table[base][material]
-  
-  console.log('Arcana will be : ', arcanaResult)
-  return arcanaResult
-  
+  const arcanaResult = getFusionArcana(indexOne, indexTwo)
+  console.log(arcanaResult)
 }
 
-export default Calculator
+
+
+function* calculatorSaga() {
+  yield takeLatest('FUSE', fusionCalculator)
+}
+
+export default calculatorSaga

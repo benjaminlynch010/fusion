@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+
 // Mantine
 import {
-  ActionIcon, Container, Flex, Table, Text
+  ActionIcon, Button, Card, Container, SimpleGrid, Table, Text
  } from '@mantine/core'
  import { IconTrash, IconListDetails } from '@tabler/icons-react';
  
@@ -15,16 +16,34 @@ function UserParty(props) {
   // a default value of 'Functional Component'
   const [heading, setHeading] = useState('Party');
   const party = useSelector((store) => store.party);
-  
+  const [firstToFuse, setFirstToFuse] = useState('')
+  const [secondToFuse, setSecondToFuse] = useState('')
+  const [fusionMaterials, setFusionMaterials] = useState('')
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_PARTY' });
+    dispatch({ type: 'FETCH_PARTY' })
   }, [dispatch]);
 
-  const handleClick = (persona) => {
+  const handleDeleteClick = (persona) => {
     dispatch({ type: 'DELETE_FROM_PARTY', payload: persona })
   }
+
+  const selectFirst = (persona) => {
+    console.log('1st Sacrifice : ', persona.name)
+    setFirstToFuse(persona)
+  }
+  const selectSecond = (persona) => {
+    console.log('2nd Sacrifice : ', persona.name)
+    setSecondToFuse(persona)
+  }
+  
+  const handleFusion = (personaOne, personaTwo) => {
+    const newPersonas = {personaOne, personaTwo};
+    setFusionMaterials(newPersonas)
+    dispatch({ type: 'FUSE', payload: newPersonas });
+}
+
 
   const rows = party.map((persona) => (
     <tr key={persona.id}>
@@ -37,16 +56,24 @@ function UserParty(props) {
         </ActionIcon>
       </td>
       <td>
-        <ActionIcon onClick={() => handleClick(persona)}>
+        <ActionIcon onClick={() => handleDeleteClick(persona)}>
           <IconTrash size="1.125rem" />
         </ActionIcon>
+      </td>
+      <td>
+        <Button onClick={() => selectFirst(persona)}>Select</Button>
+      </td>
+      <td>  
+        <Button onClick={() => selectSecond(persona)}>Select</Button>
       </td>
     </tr>
   ));
 
   return (
 <Container>
-      <Text fz='xl'>{heading}</Text>
+      <Text>First : {firstToFuse.name}</Text>
+      <Text>Second : {secondToFuse.name}</Text>
+      <Button onClick={() => handleFusion(firstToFuse, secondToFuse)}>F U S E</Button>
       <Table striped highlightOnHover>
         <thead>
           <tr>
