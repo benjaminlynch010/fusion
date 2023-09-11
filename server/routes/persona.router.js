@@ -21,6 +21,26 @@ router.get('/', (req, res) => {
   })
 });
 
+router.get('/fusion/', (req, res) => {
+  // GET route code here
+  const { arcanaResult, levelResult } = req.query;
+  console.log('at server', levelResult)
+  const params = [arcanaResult, levelResult]
+  const queryText = `
+  SELECT * FROM personas
+  WHERE race=$1
+  AND lvl >= $2
+  LIMIT 1;
+  `
+  pool.query(queryText, params)
+  .then((result) => {
+    console.log('Result: ', result.rows)
+    res.send(result.rows)
+  })
+  .catch((error) => {
+    res.sendStatus(500)
+  })
+});
 /**
  * POST route template
  */

@@ -32,7 +32,7 @@ function Nav() {
               Info Page
             </Link>
 
-            <LogOutButton className="navLink" />
+            <LogOutButton variant="subtle" className="navLink" />
           </>
         )}
 

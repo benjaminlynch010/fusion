@@ -2,15 +2,17 @@ import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
 
+import { Container, Center, Button, } from '@mantine/core'
+
 function LoginPage() {
   const history = useHistory();
 
   return (
-    <div>
+    <Container>
       <LoginForm />
 
-      <center>
-        <button
+      <Center>
+        <Button
           type="button"
           className="btn btn_asLink"
           onClick={() => {
@@ -18,9 +20,9 @@ function LoginPage() {
           }}
         >
           Register
-        </button>
-      </center>
-    </div>
+        </Button>
+      </Center>
+    </Container>
   );
 }
 
