@@ -3,16 +3,22 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 
 // Mantine
-import { Card, Button, Title, Text, Container } from '@mantine/core'
+import { Card, Group, Title, Text, Container } from '@mantine/core'
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   return (
     <Container>
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
+              <Group>
+              <Title>Welcome, {user.username}!</Title>
+          </Group>
+      <Card mt="sm">
+        <Group position="apart" mt="xs" mb="xs">
+          <LogOutButton/>
+        </Group>
+
+      </Card>
     </Container>
   );
 }
