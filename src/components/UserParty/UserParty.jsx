@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-
 // Mantine
 import {
   ActionIcon, Button, Card, Container, SimpleGrid, Table, Text

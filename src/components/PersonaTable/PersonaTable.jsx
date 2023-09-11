@@ -18,6 +18,7 @@ function PersonaTable(props) {
   
 
   const [heading, setHeading] = useState(`Personas`);
+  const [selectedValues, setSelectedValues] =useState([])
   const personas = useSelector((store) => store.personas);
 
 
@@ -47,43 +48,68 @@ function PersonaTable(props) {
       </tr>
     ));
 
+    const handleSelectChange = (values) => {
+      setSelectedValues(values);
+      console.log(values)
+      
+    }
+
   return (
     <Container>
       <Text>{heading}</Text>
       <Flex
-      mih={50}
-      gap="xs"
-      justify="center"
-      align="center"
-      direction="row"
-      wrap="wrap"
-    >
-          <MultiSelect
-      data={[
-        'Chariot', 'Death', 'Devil', 'Emperor', 'Empress', 'Fool', 
-        'Fortune', 'Hanged', 'Hermit', 'Hierophant', 'Judgement', 
-        'Justice', 'Lovers', 'Magician', 'Moon', 'Preistess', 
-        'Star', 'Strength', 'Sun', 'Temperance', 'Tower'
-      ]}
-      label="Narrow Results"
-      placeholder="Select Arcana"
-      clearButtonProps={{ 'aria-label': 'Clear selection' }}
-      clearable
-      searchable
-    />
-      <Button>Sort</Button>
+        mih={50}
+        gap="xs"
+        justify="center"
+        align="center"
+        direction="row"
+        wrap="wrap"
+      >
+<MultiSelect
+  data={[
+    { value: "Chariot", label: "Chariot" },
+    { value: "Death", label: "Death" },
+    { value: "Devil", label: "Devil" },
+    { value: "Emperor", label: "Emperor" },
+    { value: "Empress", label: "Empress" },
+    { value: "Fool", label: "Fool" },
+    { value: "Fortune", label: "Fortune" },
+    { value: "Hanged", label: "Hanged" },
+    { value: "Hermit", label: "Hermit" },
+    { value: "Hierophant", label: "Hierophant" },
+    { value: "Judgement", label: "Judgement" },
+    { value: "Justice", label: "Justice" },
+    { value: "Lovers", label: "Lovers" },
+    { value: "Magician", label: "Magician" },
+    { value: "Moon", label: "Moon" },
+    { value: "Preistess", label: "Preistess" },
+    { value: "Star", label: "Star" },
+    { value: "Strength", label: "Strength" },
+    { value: "Sun", label: "Sun" },
+    { value: "Temperance", label: "Temperance" },
+    { value: "Tower", label: "Tower" },
+  ]}
+  value={selectedValues}
+  onChange={handleSelectChange}
+  label="Narrow Results"
+  placeholder="Select Arcana"
+  clearable
+  searchable
+/>
+
+        <Button>Sort</Button>
       </Flex>
-    <Table striped highlightOnHover>
-      <thead>
-        <tr>
-          <th>Level</th>
-          <th>Name</th>
-          <th>Arcana</th>
-          <th>Add to Party</th>
-        </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </Table>
+      <Table striped highlightOnHover>
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>Name</th>
+            <th>Arcana</th>
+            <th>Add to Party</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </Table>
     </Container>
   );
 }
