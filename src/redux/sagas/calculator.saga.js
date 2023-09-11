@@ -68,7 +68,8 @@ function getFusionArcana(arc1, arc2) {
 
   console.log(`adding ${fusionQuery} for fusion`)
   try {
-    yield axios.post('/api/personas/fusion', fusionQuery)
+    const response = yield axios.get(`/api/personas/fusion/?arcanaResult=${arcanaResult}&levelResult=${levelResult}`)
+    console.log('SERVER RESPONSE : ', response.data[0].name)
   } catch (err) {
     console.log('Cannot add new Persona', err)
   }

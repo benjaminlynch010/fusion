@@ -21,16 +21,20 @@ router.get('/', (req, res) => {
   })
 });
 
-router.post('/fusion/', (req, res) => {
+router.get('/fusion/', (req, res) => {
   // GET route code here
-  console.log('fusing in db, req.body: ', req.body)
-  
+  const { arcanaResult, levelResult } = req.query;
+  console.log('at server', levelResult)
+  const params = [arcanaResult, levelResult]
   const queryText = `
   SELECT * FROM personas
-  ORDER BY personas.name ASC;
+  WHERE race=$1
+  AND lvl >= $2
+  LIMIT 1;
   `
-  pool.query(queryText)
+  pool.query(queryText, params)
   .then((result) => {
+    console.log('Result: ', result.rows)
     res.send(result.rows)
   })
   .catch((error) => {
