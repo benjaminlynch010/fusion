@@ -20,6 +20,7 @@ function UserParty(props) {
   const [secondToFuse, setSecondToFuse] = useState('')
   const [fusionMaterials, setFusionMaterials] = useState('')
   const dispatch = useDispatch();
+  const fusionResult = useSelector((store) => store.result)
 
   useEffect(() => {
     dispatch({ type: 'FETCH_PARTY' })
@@ -39,11 +40,14 @@ function UserParty(props) {
   }
   
   const handleFusion = (personaOne, personaTwo) => {
-    const newPersonas = {personaOne, personaTwo};
-    setFusionMaterials(newPersonas)
-    dispatch({ type: 'FUSE', payload: newPersonas });
+    const newFusion = {personaOne, personaTwo};
+    setFusionMaterials(newFusion)
+    dispatch({ type: 'FUSE', payload: newFusion });
 }
 
+  const result = fusionResult.map((persona) => (
+    <Text key={persona.id}>{persona.name}</Text>
+  )) 
 
   const rows = party.map((persona) => (
     <tr key={persona.id}>
@@ -70,10 +74,26 @@ function UserParty(props) {
   ));
 
   return (
-<Container>
-      <Text>First : {firstToFuse.name}</Text>
-      <Text>Second : {secondToFuse.name}</Text>
-      <Button onClick={() => handleFusion(firstToFuse, secondToFuse)}>F U S E</Button>
+    <Container>
+      <Table striped highlightOnHover>
+        <thead>
+          <tr>
+            <th>First</th>
+            <th>Second</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{firstToFuse.name}</td>
+            <td>{secondToFuse.name}</td>
+            <td>{result}</td>
+          </tr>
+        </tbody>
+      </Table>
+      <Button onClick={() => handleFusion(firstToFuse, secondToFuse)}>
+        F U S E
+      </Button>
       <Table striped highlightOnHover>
         <thead>
           <tr>
@@ -86,7 +106,7 @@ function UserParty(props) {
         </thead>
         <tbody>{rows}</tbody>
       </Table>
-</Container>
+    </Container>
   );
 }
 
