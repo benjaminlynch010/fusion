@@ -19,13 +19,7 @@ root.render(
         withNormalizeCSS
         theme={{
           // Override any other properties from default theme
-          breakpoints: {
-            xs: "30em",
-            sm: "48em",
-            md: "64em",
-            lg: "74em",
-            xl: "90em",
-          },
+
           colorScheme: "dark",
           fontFamily: 'SF Pro', 
         }}

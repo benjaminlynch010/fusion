@@ -20,7 +20,7 @@ import {
 function PersonaCard() {
   const party = useSelector((store) => store.party);
 
-  const personas = party.map((persona) => (
+  const personaCard = party.map((persona) => (
     <Card shadow="md" padding="lg" radius="sm" withBorder key={persona.id}>
       <Card.Section>
         {/* <Image
@@ -39,20 +39,18 @@ function PersonaCard() {
       <Table>
         <thead>
           <tr>
-            <th>Skills</th>
+            <th>Stats</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            {/* TODO : map the array and label the stats */}
-            {persona.stats}
-          </tr>
+          <tr>{(JSON.parse(persona.stats))}</tr>
+
         </tbody>
       </Table>
     </Card>
   ));
 
-  return <Paper>{personas}</Paper>;
+  return <Paper>{personaCard}</Paper>;
 }
 
 export default PersonaCard;

@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import PersonaTable from '../PersonaTable/PersonaTable'
 import UserParty from '../UserParty/UserParty';
 import PersonaCard from '../PersonaCard/PersonaCard'
+import Party from '../Party/Party'
 
 import './App.css';
 
@@ -79,9 +80,14 @@ function App() {
             <PersonaTable />
           </Route>
 
+          <ProtectedRoute exact path="/party">
+
+            <Party />
+          </ProtectedRoute>
+          
           <Route
             exact
-            path="/party"
+            path="/user-party"
           >
             <UserParty />
           </Route>

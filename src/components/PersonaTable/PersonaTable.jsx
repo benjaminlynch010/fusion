@@ -56,7 +56,7 @@ function PersonaTable(props) {
 
   return (
     <Container>
-      <Text>{heading}</Text>
+      {/* <Text>{heading}</Text>
       <Flex
         mih={50}
         gap="xs"
@@ -96,7 +96,7 @@ function PersonaTable(props) {
   clearable
   searchable
 />
-      </Flex>
+      </Flex> */}
       <Table striped highlightOnHover>
         <thead>
           <tr>
