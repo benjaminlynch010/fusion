@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import PersonaCard from '../PersonaCard/PersonaCard'
+
 // Mantine
 import {
   ActionIcon, Button, Card, Container, SimpleGrid, Table, Text
@@ -74,6 +76,7 @@ function UserParty(props) {
 
   return (
     <Container>
+      <PersonaCard />
       <Table striped highlightOnHover>
         <thead>
           <tr>

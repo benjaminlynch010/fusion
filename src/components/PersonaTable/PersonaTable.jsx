@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { IconCheck, IconX } from '@tabler/icons-react';
+
 
 
 // Mantine
 import {
   Button, Container, Flex, MultiSelect, Table, Text
  } from '@mantine/core'
+import { IconCheck, IconX } from '@tabler/icons-react';
 import { notifications } from '@mantine/notifications'
 
 // Basic functional component structure for React with default state
@@ -18,7 +19,7 @@ function PersonaTable(props) {
   
 
   const [heading, setHeading] = useState(`Personas`);
-  const [selectedValues, setSelectedValues] =useState([])
+  const [selectedValues, setSelectedValues] = useState([])
   const personas = useSelector((store) => store.personas);
 
 
@@ -38,8 +39,8 @@ function PersonaTable(props) {
     })
     dispatch({ type: 'FETCH_PERSONAS'})
   }
-
-    const rows = personas.map((persona) => (
+  
+    const tableRows = personas.map((persona) => (
       <tr key={persona.id}>
         <td>{persona.lvl}</td>
         <td>{persona.name}</td>
@@ -51,7 +52,6 @@ function PersonaTable(props) {
     const handleSelectChange = (values) => {
       setSelectedValues(values);
       console.log(values)
-      
     }
 
   return (
@@ -91,13 +91,11 @@ function PersonaTable(props) {
   ]}
   value={selectedValues}
   onChange={handleSelectChange}
-  label="Narrow Results"
+  label="Narrow Results by Arcana"
   placeholder="Select Arcana"
   clearable
   searchable
 />
-
-        <Button>Sort</Button>
       </Flex>
       <Table striped highlightOnHover>
         <thead>
@@ -108,7 +106,7 @@ function PersonaTable(props) {
             <th>Add to Party</th>
           </tr>
         </thead>
-        <tbody>{rows}</tbody>
+        <tbody>{tableRows}</tbody>
       </Table>
     </Container>
   );

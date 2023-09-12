@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import PersonaTable from '../PersonaTable/PersonaTable'
 import UserParty from '../UserParty/UserParty';
+import PersonaCard from '../PersonaCard/PersonaCard'
 
 import './App.css';
 
@@ -83,6 +84,12 @@ function App() {
             path="/party"
           >
             <UserParty />
+          </Route>
+
+          <Route
+            exact path="/cards"
+          >
+            <PersonaCard />
           </Route>
 
           <Route
