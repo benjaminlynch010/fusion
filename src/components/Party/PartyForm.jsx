@@ -22,10 +22,11 @@ Button,
   TextInput,
   NumberInput,
 } from "@mantine/core";
+import PersonaModal from "./PersonaModal";
 
 
 function PartyForm() {
-  const [personaName, setPersonaName] = useInputState("");
+
 
   const dispatch = useDispatch()
 
@@ -33,29 +34,17 @@ function PartyForm() {
   
   const handleClick = (event) => {
     console.log('click.')
-    setPersonaName(persona.name)
   }
-
-  useEffect(() => {
-    dispatch({ type: 'FETCH_PARTY' })
-  }, [dispatch]);
-
-
+  
   return (
-    <Container>
-      <Stack>
-        <Title>Unnamed Party</Title>
-        <Text size="xs" color="dimmed">
-          Notes
-        </Text>
-      </Stack>
+    
     <Group>
       <ButtonGroup 
         buttons={[ '', '', '', '', '', '' ]}
-        doAfterClick={handleModal}
+        doAfterClick={handleClick}
       />
     </Group>
-    </Container>
+
   ); // end return
 }
 

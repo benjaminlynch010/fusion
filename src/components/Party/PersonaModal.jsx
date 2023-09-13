@@ -7,7 +7,7 @@ import PersonaTable from '../PersonaTable/PersonaTable'
 
 function PersonaModal() {
   const [opened, { open, close }] = useDisclosure(false);
-
+  
   const party = useSelector((store) => store.party)
 
   const partyButtons = () => {

@@ -1,35 +1,39 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
+import PersonaTable from "../PersonaTable/PersonaTable";
+
 // Mantine Components
-import { Button } from "@mantine/core";
+import { Button, Group, Modal } from "@mantine/core";
 // Mantine Hooks
-import { useInputState } from "@mantine/hooks";
+import { useDisclosure } from "@mantine/hooks";
 
 // Icons
 import { IconPlus } from "@tabler/icons-react";
 
-import PersonaModal from "../Party/PersonaModal";
 
 function ButtonGroup({ buttons }) {
+  
+  const [opened, { open, close }] = useDisclosure(false);
   const party = useSelector((store) => store.party);
-  const [ hasPersona, setHasPersona ] = useState('Add Persona')
 
-  const buttonLabel = () => {
-    
-  }
+
+
 
   return (
     <>
-    {buttons.map((name, i) => (
-        <Button key={i} 
-        name={hasPersona}
-        variant="outline"
-        onClick=""
-        >
-          {hasPersona}
-        </Button>
-        ))}
+      {buttons.map((button, i) => (
+        <Group key={i}>
+          <Button 
+            variant={party.length < 5 ? "outline" : "solid"} 
+            onClick={open}>
+            
+          </Button>
+          <Modal opened={opened} onClose={close} centered>
+            <PersonaTable />
+          </Modal>
+        </Group>
+      ))}
     </>
   )
 
