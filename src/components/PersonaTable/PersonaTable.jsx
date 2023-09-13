@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 
 
+
 // Mantine
 import {
   Button, Container, Flex, MultiSelect, Table, Text
@@ -43,10 +44,12 @@ function PersonaTable(props) {
       <tr key={persona.id}>
         <td>{persona.lvl}</td>
         <td>{persona.name}</td>
-        <td>{persona.race}</td>
-        <td><Button onClick={() => handleClick(persona)}>Add</Button></td>
+    <td>{persona.race}</td>
+        <td><Button onClick={() => handleClick(persona)}>{persona.name}</Button></td>
       </tr>
     ));
+
+
 
   return (
     <Container>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 import ButtonGroup from './ButtonGroup'
@@ -9,7 +9,7 @@ import { useInputState } from "@mantine/hooks";
 
 // Mantine Components
 import {
-  ActionIcon,
+Button,
   Card,
   Container,
   Group,
@@ -24,25 +24,22 @@ import {
 } from "@mantine/core";
 
 
-
-import PersonaModal from './PersonaModal' 
-
 function PartyForm() {
-  const [personaId, setPersonaId] = useInputState("");
+  const [personaName, setPersonaName] = useInputState("");
 
+  const dispatch = useDispatch()
 
   const party = useSelector((store) => (store.party));
-
-
-
-  const handleAddPersona = () => {
+  
+  const handleClick = (event) => {
     console.log('click.')
+    setPersonaName(persona.name)
   }
 
+  useEffect(() => {
+    dispatch({ type: 'FETCH_PARTY' })
+  }, [dispatch]);
 
-  
-  
-  
 
   return (
     <Container>
@@ -52,14 +49,12 @@ function PartyForm() {
           Notes
         </Text>
       </Stack>
-      <Group>
-        <ButtonGroup
-          buttons={[1,2,3,4,5,6,7,8]}
-        />
-      </Group>
-      <Group>
-        <PersonaModal />
-      </Group>
+    <Group>
+      <ButtonGroup 
+        buttons={[ '', '', '', '', '', '' ]}
+        doAfterClick={handleModal}
+      />
+    </Group>
     </Container>
   ); // end return
 }
