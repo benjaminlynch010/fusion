@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
   const queryText = `
   SELECT * FROM personas
   JOIN party ON personas.id = party.persona_id
-  ORDER BY personas.lvl ASC;`;
+  ORDER BY party.persona_id ASC;`;
   pool.query(queryText)
     .then((result) => {
       res.send(result.rows);

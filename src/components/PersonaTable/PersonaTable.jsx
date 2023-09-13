@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-
-
-
 // Mantine
 import {
-  Button, Container, Flex, MultiSelect, Table, Text
+  Button, Container, Flex, MultiSelect, Table, Text, ActionIcon
  } from '@mantine/core'
-import { IconCheck } from '@tabler/icons-react';
+import { IconCheck, IconPlus } from '@tabler/icons-react';
 import { notifications } from '@mantine/notifications'
 
 // Basic functional component structure for React with default state
@@ -18,7 +15,6 @@ function PersonaTable(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
 
-  
   const personas = useSelector((store) => store.personas);
 
   // gets updated list of all personas to render on page load
@@ -38,22 +34,29 @@ function PersonaTable(props) {
       autoClose: 5000,
     })
     dispatch({ type: 'FETCH_PERSONAS'})
+    dispatch({ type: 'FETCH_PARTY'})
   }
   
     const tableRows = personas.map((persona) => (
       <tr key={persona.id}>
         <td>{persona.lvl}</td>
         <td>{persona.name}</td>
-    <td>{persona.race}</td>
-        <td><Button onClick={() => handleClick(persona)}>{persona.name}</Button></td>
+        <td>{persona.race}</td>
+        <td>
+          <ActionIcon 
+            onClick={() => handleClick(persona)}
+            variant="filled"
+            radius="50%"
+            color="pink"
+            >
+            <IconPlus />
+          </ActionIcon>
+        </td>
       </tr>
     ));
 
-
-
   return (
     <Container>
-
       <Table striped highlightOnHover>
         <thead>
           <tr>
@@ -67,6 +70,22 @@ function PersonaTable(props) {
       </Table>
     </Container>
   );
+  
+  
+  
+  // return (
+  //   <Select
+  //     label='Add to Party'
+  //     placeholder='Pick One'
+  //     searchable
+  //     onSearchChange={onSearchChange}
+  //     searchValue={searchValue}
+  //   />
+  // )
+
+
+
 }
+
 
 export default PersonaTable;
