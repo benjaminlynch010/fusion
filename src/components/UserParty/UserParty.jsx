@@ -95,7 +95,7 @@ function UserParty(props) {
       };
 
       return (
-        <Card sx={{height: "200px", width: "200px"}} key={index} variant={isPersonaExists ? "filled" : "outline"}>
+        <Card sx={{}} key={index} variant={isPersonaExists ? "filled" : "outline"}>
           <Group>
             <Text>{isPersonaExists ? persona.name : "Add Persona"}</Text>
             {isArcanaExists()}
