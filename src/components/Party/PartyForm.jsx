@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
+import ButtonGroup from './ButtonGroup'
+
 // Mantine Hooks
 import { useInputState } from "@mantine/hooks";
-import { useForm } from "@mantine/form";
+
 
 // Mantine Components
 import {
@@ -20,8 +22,7 @@ import {
   NumberInput,
 } from "@mantine/core";
 
-// Icons
-import { IconPlus } from "@tabler/icons-react";
+
 
 import PersonaModal from './PersonaModal' 
 
@@ -29,40 +30,9 @@ function PartyForm() {
   const [stringValue, setStringValue] = useInputState("");
   const [numberValue, setNumberValue] = useInputState(0);
 
-  const form = useForm({
-    initialValues: {
-      header: stringValue,
-      subheader: "Notes",
-    },
-  });
-
-//   <ActionIcon variant="outline" radius="50%">
-//   <IconPlus />
-// </ActionIcon>
-// <ActionIcon variant="outline" radius="50%">
-//   <IconPlus />
-// </ActionIcon>
-// <ActionIcon variant="outline" radius="50%">
-//   <IconPlus />
-// </ActionIcon>
-// <ActionIcon variant="outline" radius="50%">
-//   <IconPlus />
-// </ActionIcon>
-// <ActionIcon variant="outline" radius="50%">
-//   <IconPlus />
-// </ActionIcon>
-// <ActionIcon variant="outline" radius="50%">
-//   <IconPlus />
-// </ActionIcon>
-
-  const addButton = (
-    <ActionIcon variant="outline" radius="50%">
-      <IconPlus />
-    </ActionIcon>
-  );
-
-  // Instead of manually messing around with button
-  const addButtonArray = Array(6).fill(addButton)
+  const handleAddPersona = () => {
+    console.log('click.')
+  }
 
   return (
     <Container>
@@ -73,11 +43,7 @@ function PartyForm() {
         </Text>
       </Stack>
 
-      <Group position="center" spacing="lg" p="md">
-        {addButtonArray.map((button, index) => (
-          <
-        ))}
-      </Group>
+      <ButtonGroup />
 
       <PersonaModal />
     </Container>
