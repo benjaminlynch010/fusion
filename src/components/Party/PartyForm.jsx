@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 
 import ButtonGroup from './ButtonGroup'
 
@@ -27,12 +28,21 @@ import {
 import PersonaModal from './PersonaModal' 
 
 function PartyForm() {
-  const [stringValue, setStringValue] = useInputState("");
-  const [numberValue, setNumberValue] = useInputState(0);
+  const [personaId, setPersonaId] = useInputState("");
+
+
+  const party = useSelector((store) => (store.party));
+
+
 
   const handleAddPersona = () => {
     console.log('click.')
   }
+
+
+  
+  
+  
 
   return (
     <Container>
@@ -42,12 +52,16 @@ function PartyForm() {
           Notes
         </Text>
       </Stack>
-
-      <ButtonGroup />
-
-      <PersonaModal />
+      <Group>
+        <ButtonGroup
+          buttons={[1,2,3,4,5,6,7,8]}
+        />
+      </Group>
+      <Group>
+        <PersonaModal />
+      </Group>
     </Container>
   ); // end return
 }
 
-export default PartyForm;
+export default PartyForm

@@ -1,34 +1,34 @@
 import React, { useState } from "react";
 
 // Mantine Components
-import { ActionIcon, } from '@mantine/core'
+import { ActionIcon, Group, } from '@mantine/core'
 // Icons
 import { IconPlus, } from "@tabler/icons-react";
 
+function ButtonGroup({ buttons, }) {
+  
+  const [clickedId, setClickedId] = useState(-1);
 
-function ButtonGroup({ buttons }) {
+  const handleClick = (id) => {
+    setClickedId(id);
+    console.log(id)
 
-const [ clickedID, setClickedID ] = useState(-1)
-
-const handleClick = () => {
-  console.log('click.')
-  // After click do this
-  // TODO
-}
+  };
 
   return (
     <>
-    {buttons.map((index) => (
-      <ActionIcon 
-        key={index}
-        onClick={() => handleClick(index)} 
-        variant="outline" 
-        radius="50%">
-        {buttonLabel}
-      </ActionIcon>
-    ))}
-    </>
+    {buttons.map((i) => (
+          <ActionIcon
+            key={i}
+            variant='outline'
+            radius='50%'
+            onClick={(event) => handleClick(event, i)}
+            >
+            <IconPlus />
+          </ActionIcon>
+            ))}
+      </>
   );
 }
-
 export default ButtonGroup;
+
