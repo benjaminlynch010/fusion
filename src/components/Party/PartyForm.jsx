@@ -22,7 +22,7 @@ Button,
   TextInput,
   NumberInput,
 } from "@mantine/core";
-import PersonaModal from "./PersonaModal";
+import PersonaModal from "../PersonaModal/PersonaModal";
 
 
 function PartyForm() {

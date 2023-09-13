@@ -5,9 +5,9 @@ import PersonaCard from '../PersonaCard/PersonaCard'
 
 // Mantine
 import {
-  ActionIcon, Button, Card, Container, SimpleGrid, Table, Text
+  ActionIcon, Badge, Button, Card, Container, Group, SimpleGrid, Table, Text, Title
  } from '@mantine/core'
- import { IconTrash, IconListDetails } from '@tabler/icons-react';
+ import { IconTrash, IconPlus, IconListDetails } from '@tabler/icons-react';
  
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -50,12 +50,39 @@ function UserParty(props) {
     <Text key={persona.id}>{persona.name}</Text>
   )) 
 
-  const rows = party.map((persona) => (
-    <tr key={persona.id}>
-      <td>{persona.lvl}</td>
-      <td>{persona.name}</td>
-      <td>{persona.race}</td>
-      <td>
+  const rows = Array(8).fill(null).map((_, index) => {
+    
+    const persona = party[index];
+    const isPersonaExists = persona && persona.name;
+    const isArcanaExists = () => {
+      if (persona && persona.race) {
+        return (
+          <Badge>{persona.race}</Badge>
+        )
+      } else {
+        return (
+          <ActionIcon 
+            variant="outline" 
+            radius="50%">
+            <IconPlus />
+          </ActionIcon>
+        )
+      }
+    }
+
+    return (
+      <Card key={index}
+          variant={isPersonaExists ? "filled" : "outline"}>
+            <Group>
+              <Text>{isPersonaExists ? persona.name : 'Add Persona'}</Text>
+              {isArcanaExists()}
+            </Group>
+      </Card>
+    );
+  });
+  
+
+      {/* <td>
         <ActionIcon>
           <IconListDetails />
         </ActionIcon>
@@ -70,44 +97,29 @@ function UserParty(props) {
       </td>
       <td>  
         <Button onClick={() => selectSecond(persona)}>Select</Button>
-      </td>
-    </tr>
-  ));
+      </td> 
+      </tr>
+      ));
+    */}
 
   return (
     <Container>
-      <PersonaCard />
-      <Table striped highlightOnHover>
-        <thead>
-          <tr>
-            <th>First</th>
-            <th>Second</th>
-            <th>Result</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{firstToFuse.name}</td>
-            <td>{secondToFuse.name}</td>
-            <td>{result}</td>
-          </tr>
-        </tbody>
-      </Table>
-      <Button onClick={() => handleFusion(firstToFuse, secondToFuse)}>
-        F U S E
-      </Button>
-      <Table striped highlightOnHover>
-        <thead>
-          <tr>
-            <th>Level</th>
-            <th>Name</th>
-            <th>Arcana</th>
-            <th>Details</th>
-            <th>Remove</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </Table>
+      <Group>
+        <SimpleGrid cols={4}>
+          {rows}
+        </SimpleGrid>
+
+        <Card>
+          <Text>
+            {firstToFuse.name}
+          </Text>
+          </Card>
+        <Card>{secondToFuse.name}</Card>
+        <Card>{result}</Card>
+        <Button onClick={() => handleFusion(firstToFuse, secondToFuse)}>
+          F U S E
+        </Button>
+      </Group>
     </Container>
   );
 }
