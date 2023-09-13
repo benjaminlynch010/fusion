@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import PersonaCard from '../PersonaCard/PersonaCard'
+import PersonaTable from '../PersonaTable/PersonaTable';
 
 // Mantine
 import {
-  ActionIcon, Badge, Button, Card, Container, Group, SimpleGrid, Table, Text, Title
+  ActionIcon, Badge, Button, Card, Container, Group, SimpleGrid, Modal, Table, Text, Title
  } from '@mantine/core'
+ import { useDisclosure } from '@mantine/hooks'
  import { IconTrash, IconPlus, IconListDetails } from '@tabler/icons-react';
  
 // Basic functional component structure for React with default state
@@ -22,6 +24,9 @@ function UserParty(props) {
   const [fusionMaterials, setFusionMaterials] = useState('')
   const dispatch = useDispatch();
   const fusionResult = useSelector((store) => store.result)
+
+  // open & close for Modal
+  const [opened, { open, close }] = useDisclosure(false);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_PARTY' })
@@ -57,14 +62,23 @@ function UserParty(props) {
     const isArcanaExists = () => {
       if (persona && persona.race) {
         return (
+          <Group>
           <Badge>{persona.race}</Badge>
+            <ActionIcon>
+              <IconTrash />
+            </ActionIcon>
+          </Group>
         )
       } else {
         return (
           <ActionIcon 
             variant="outline" 
-            radius="50%">
-            <IconPlus />
+            radius="50%"
+            >
+            <IconPlus onClick={open} />
+            <Modal opened={opened} onClose={close} centered>
+              <PersonaTable />
+            </Modal>
           </ActionIcon>
         )
       }
