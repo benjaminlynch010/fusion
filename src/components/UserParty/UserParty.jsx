@@ -100,7 +100,9 @@ function UserParty(props) {
       const isPartySlot = () => {
         if (persona) {
           return (
-            <Card key={index}>
+            <Card key={index}
+              onClick={() => selectForFusion(persona)}
+              >
               <Text weight={500}>{persona.name}</Text>
               <Badge>{persona.race}</Badge>
 
@@ -118,7 +120,6 @@ function UserParty(props) {
                   opened={opened}
                   onClose={close}
                   closeOnClickOutside
-                  Flexed
                 >
                   <PersonaTable />
                 </Modal>
@@ -129,7 +130,7 @@ function UserParty(props) {
       };
 
       return (
-        <Card onClick={() => selectForFusion(persona)}>
+        <Card>
           {isPartySlot()}
         </Card>
 
