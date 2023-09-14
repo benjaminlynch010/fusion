@@ -21,8 +21,6 @@ import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import PersonaTable from "../PersonaTable/PersonaTable";
 import UserParty from "../UserParty/UserParty";
-import PersonaCard from "../PersonaCard/PersonaCard";
-import Party from "../Party/Party";
 
 import "./App.css";
 

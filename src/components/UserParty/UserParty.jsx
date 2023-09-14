@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import PersonaCard from "../PersonaCard/PersonaCard";
+
 import PersonaTable from "../PersonaTable/PersonaTable";
-import HeroLoop from '../HeroLoop/HeroLoop'
+
 
 // Mantine
 import {
@@ -48,9 +48,18 @@ function UserParty(props) {
     dispatch({ type: "DELETE_FROM_PARTY", payload: persona });
   };
 
-  const selectFirst = (persona) => {
-    console.log("1st Sacrifice : ", persona.name);
-    setFirstToFuse(persona);
+  const selectForFusion = (persona) => {
+
+    if (firstToFuse === '') {
+      setFirstToFuse(persona)
+    }
+    else if (secondToFuse === '') {
+      setSecondToFuse(persona)
+    }
+    else {
+    }
+
+    
   };
   const selectSecond = (persona) => {
     console.log("2nd Sacrifice : ", persona.name);
@@ -95,7 +104,11 @@ function UserParty(props) {
       };
 
       return (
-        <Card sx={{}} key={index} variant={isPersonaExists ? "filled" : "outline"}>
+        <Card 
+          sx={{}} 
+          key={index}
+          onClick={() => selectForFusion(persona)} 
+          variant={isPersonaExists ? "filled" : "outline"}>
           <Group>
             <Text>{isPersonaExists ? persona.name : "Add Persona"}</Text>
             {isArcanaExists()}
@@ -104,7 +117,7 @@ function UserParty(props) {
       );
     });
 
-  {
+  
     /* <td>
 <ActionIcon>
 <IconListDetails />
@@ -124,18 +137,18 @@ function UserParty(props) {
 </tr>
 ));
 */
-  }
+  
 
   return (
     <Container>
-      <HeroLoop />
       <Group>
-        <SimpleGrid cols={4}>{rows}</SimpleGrid>
-
-        <Card>
+        <SimpleGrid cols={2}>{rows}</SimpleGrid>
+        <Card sx={{ height: '10rem', width: '10rem' }}>
           <Text>{firstToFuse.name}</Text>
         </Card>
-        <Card>{secondToFuse.name}</Card>
+        <Card sx={{ height: '10rem', width: '10rem' }}>
+          <Text>{secondToFuse.name}</Text>
+        </Card>
         <Card>{result}</Card>
         <Button onClick={() => handleFusion(firstToFuse, secondToFuse)}>
           F U S E
