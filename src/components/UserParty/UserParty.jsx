@@ -105,6 +105,7 @@ function UserParty(props) {
               >
               <Text weight={500}>{persona.name}</Text>
               <Badge>{persona.race}</Badge>
+              <Image>{persona.image}</Image>
 
               <ActionIcon onClick={() => handleDeleteClick(persona)}>
                 <IconTrash />
@@ -130,7 +131,7 @@ function UserParty(props) {
       };
 
       return (
-        <Card>
+        <Card key={index}>
           {isPartySlot()}
         </Card>
 
@@ -144,6 +145,7 @@ function UserParty(props) {
       <SimpleGrid cols={2}>
       <Card>
         <Text>{firstToFuse.name}</Text>
+        <Image src={firstToFuse.image}></Image>
       </Card>
       <Card>
         <Text>{secondToFuse.name}</Text>

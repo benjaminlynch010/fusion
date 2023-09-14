@@ -6,6 +6,7 @@ import store from './redux/store';
 
 import App from './components/App/App';
 
+
 // Mantine UI 
 import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
