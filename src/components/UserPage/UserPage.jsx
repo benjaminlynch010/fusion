@@ -14,14 +14,16 @@ function UserPage() {
       <Stack 
         align="stretch" 
         justify="center"
-        spacing="xs">
+        spacing="lg">
         <Button size="xl" h={120}>Fusion Calculator</Button>
         <Button size="xl" h={120}>Gallery</Button>
         <SimpleGrid cols={2}>
           <Button size="xl" h={150}>Party</Button>
           <Button size="md" h={150}>Reverse Fusion</Button>
         </SimpleGrid>
-        <Button>Settings</Button>
+        {/* TODO add links to these (if using for presentation) */}
+        <Button>About</Button>
+        <Button>Info</Button>
       </Stack>
     </Container>
   );

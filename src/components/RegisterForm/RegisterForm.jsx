@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // Mantine
 import { Box, Container, Center, Checkbox, Card, Group, Stack, TextInput, Text, Title, Button, SimpleGrid } from '@mantine/core'
-import { useForm } from '@mantine/form'
+
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -23,25 +23,11 @@ function RegisterForm() {
     });
   }; // end registerUser
 
-  const form = useForm({
-    initialValues: {
-      username: '',
-      password: '',
-      termsOfService: false,
-    },
-
-    validate : {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email')
-    },
-  })
-
   return (
-    <form 
-      className="formPanel" 
-      onSubmit={registerUser}>
+    <form className="formPanel" onSubmit={registerUser}> 
 
       <Stack>
-      <Text>Register User</Text>
+      <Title order={2}>Register User</Title>
       {errors.registrationMessage && (
         <Text className="alert" role="alert">
           {errors.registrationMessage}

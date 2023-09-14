@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 
-import { Container, Center, Card, TextInput, Title, Button, SimpleGrid } from '@mantine/core'
+import { Container, Center, Card, Stack, TextInput, Text, Title, Button, SimpleGrid } from '@mantine/core'
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -28,14 +28,13 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+      <Stack>
+      <Title order={2}>Login</Title>
       {errors.loginMessage && (
-        <h3 className="alert" role="alert">
+        <Text className="alert" role="alert">
           {errors.loginMessage}
-        </h3>
+        </Text>
       )}
-      <div>
-          Username:
           <TextInput
             type="text"
             name="username"
@@ -44,8 +43,7 @@ function LoginForm() {
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-      </div>
-      <div>
+
           <TextInput
             type="password"
             name="password"
@@ -55,10 +53,8 @@ function LoginForm() {
             onChange={(event) => setPassword(event.target.value)}
           />
 
-      </div>
-      <div>
         <Button type="submit" name="submit" value="Log In">Log In</Button>
-      </div>
+      </Stack>
     </form>
   );
 }

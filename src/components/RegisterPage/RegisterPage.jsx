@@ -10,7 +10,7 @@ function RegisterPage() {
   const history = useHistory();
 
   return (
-    <Box maw={100} mx="auto">
+    <Box maw={300} mx="auto">
       <RegisterForm />
         <Button
           type="button"

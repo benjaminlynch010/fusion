@@ -4,43 +4,45 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
 
+// Mantine
+import { Button, Box, Title, Group, NavLink } from '@mantine/core'
+import { IconHome2 , IconUserCircle, IconInfoSquareRoundedFilled } from '@tabler/icons-react'
+
+
 function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
-    <div className="nav">
-      <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
-      </Link>
-      <div>
+    <Box w={240} className="nav">
+        <Title p='lg' className="nav-title">Velvet Room</Title>
+        <Group positon='right' mt='md'>
+          
+           <NavLink icon={<IconHome2 size="2rem" stroke={1.5} />} onChange="/home" />
+   
+        
+        </Group>
+     
+
         {/* If no user is logged in, show these links */}
         {!user.id && (
           // If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
+          <Button variant='subtle' className="Button variant='subtle'" to="/login">
             Login / Register
-          </Link>
+          </Button>
         )}
 
         {/* If a user is logged in, show these links */}
         {user.id && (
-          <>
-            <Link className="navLink" to="/user">
-              Home
-            </Link>
+          <Group>
+            <NavLink icon={<IconInfoSquareRoundedFilled size="2rem" stroke={1.5} />} to="/info" />
 
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
+            <NavLink icon={<IconUserCircle size='2rem' stroke={1.5} />} to='/user-party' />
 
-            <LogOutButton variant="subtle" className="navLink" />
-          </>
+            <LogOutButton  className="navLink" />
+          </Group>
         )}
 
-        <Link className="navLink" to="/about">
-          About
-        </Link>
-      </div>
-    </div>
+    </Box>
   );
 }
 
