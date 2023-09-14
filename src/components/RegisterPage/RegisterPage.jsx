@@ -1,27 +1,27 @@
-import React from 'react';
+import React from "react";
 
-import { useHistory } from 'react-router-dom';
-import RegisterForm from '../RegisterForm/RegisterForm';
+import { useHistory } from "react-router-dom";
+import RegisterForm from "../RegisterForm/RegisterForm";
+
+// Mantine
+import { Box, Paper, Group, Center, Button } from "@mantine/core";
 
 function RegisterPage() {
   const history = useHistory();
 
   return (
-    <div>
+    <Box maw={100} mx="auto">
       <RegisterForm />
-
-      <center>
-        <button
+        <Button
           type="button"
           className="btn btn_asLink"
           onClick={() => {
-            history.push('/login');
+            history.push("/login");
           }}
         >
           Login
-        </button>
-      </center>
-    </div>
+        </Button>
+    </Box>
   );
 }
 

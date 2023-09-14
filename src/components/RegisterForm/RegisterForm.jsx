@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Mantine
-import { Container, Center, Card, TextInput, Title, Button, SimpleGrid } from '@mantine/core'
+import { Box, Container, Center, Checkbox, Card, Group, Stack, TextInput, Text, Title, Button, SimpleGrid } from '@mantine/core'
+import { useForm } from '@mantine/form'
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -22,41 +23,46 @@ function RegisterForm() {
     });
   }; // end registerUser
 
+  const form = useForm({
+    initialValues: {
+      username: '',
+      password: '',
+      termsOfService: false,
+    },
+
+    validate : {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email')
+    },
+  })
+
   return (
-    <form className="formPanel" onSubmit={registerUser}>
-      <Title order={2}>Register User</Title>
+    <form 
+      className="formPanel" 
+      onSubmit={registerUser}>
+
+      <Stack>
+      <Text>Register User</Text>
       {errors.registrationMessage && (
-        <h3 className="alert" role="alert">
+        <Text className="alert" role="alert">
           {errors.registrationMessage}
-        </h3>
+        </Text>
       )}
-      <div>
-        <label htmlFor="username">
-          Username:
           <TextInput
-            type="text"
-            name="username"
+            label="Username"
+            placeholder="username"
             value={username}
             required
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
           <TextInput
-            type="password"
-            name="password"
+            label="Password"
+            placeholder="password"
             value={password}
             required
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
         <Button type="submit" name="submit" value="Register">Register</Button>
-      </div>
+        </Stack>
     </form>
   );
 }

@@ -10,7 +10,6 @@ function LoginPage() {
   return (
     <Container>
       <LoginForm />
-
       <Center>
         <Button
           type="button"
