@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-
 import PersonaTable from "../PersonaTable/PersonaTable";
-
 
 // Mantine
 import {
   ActionIcon,
   Badge,
+  Box,
   Button,
   Card,
+  Center,
   Container,
+Image,
+  Title,
   Group,
   SimpleGrid,
   Modal,
-  Select,
-  Table,
   Text,
-  Title,
+
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconTrash, IconPlus, IconListDetails } from "@tabler/icons-react";
@@ -48,22 +48,28 @@ function UserParty(props) {
     dispatch({ type: "DELETE_FROM_PARTY", payload: persona });
   };
 
+  const handleAddResult = (persona) => {
+    dispatch({ type: 'ADD_TO_PARTY', payload: persona })
+    notifications.show({
+      title: 'Nice Click!',
+      message: 'Added to party',
+      color: 'pink',
+      icon: <IconCheck />,
+      autoClose: 5000,
+    })
+    dispatch({ type: 'FETCH_PERSONAS'})
+    dispatch({ type: 'FETCH_PARTY'})
+  }
+
   const selectForFusion = (persona) => {
-
-    if (firstToFuse === '') {
-      setFirstToFuse(persona)
+    if (firstToFuse === "") {
+      setFirstToFuse(persona);
+    } else if (secondToFuse === "") {
+      setSecondToFuse(persona);
+    } else if (firstToFuse && secondToFuse) {
+      setSecondToFuse(firstToFuse);
+      setFirstToFuse(persona);
     }
-    else if (secondToFuse === '') {
-      setSecondToFuse(persona)
-    }
-    else {
-    }
-
-    
-  };
-  const selectSecond = (persona) => {
-    console.log("2nd Sacrifice : ", persona.name);
-    setSecondToFuse(persona);
   };
 
   const handleFusion = (personaOne, personaTwo) => {
@@ -73,88 +79,83 @@ function UserParty(props) {
   };
 
   const result = fusionResult.map((persona) => (
-    <Text key={persona.id}>{persona.name}</Text>
+    <Card pb='lg' key={persona.id}>
+    <Group sx={{ justifyContent: "right" }}>
+      <Badge>{persona.race}</Badge>
+    </Group>
+    <Group >
+      <Badge variant='filled'>{persona.lvl}</Badge>
+      <Title order={3}>{persona.name}</Title>
+    </Group>
+    <Group position='right' pt='md'>
+      <Button variant='light'>Details</Button>
+    </Group>
+    </Card>
   ));
 
   const rows = Array(8)
     .fill(null)
     .map((_, index) => {
       const persona = party[index];
-      const isPersonaExists = persona && persona.name;
-      const isArcanaExists = () => {
-        if (persona && persona.race) {
+      const isPartySlot = () => {
+        if (persona) {
           return (
-            <Group>
+            <Card key={index}>
+              <Text weight={500}>{persona.name}</Text>
               <Badge>{persona.race}</Badge>
+
               <ActionIcon onClick={() => handleDeleteClick(persona)}>
                 <IconTrash />
               </ActionIcon>
-            </Group>
+            </Card>
           );
         } else {
           return (
-            <ActionIcon variant="filled" radius="50%" color="pink">
-              <IconPlus onClick={open} />
-              <Modal opened={opened} onClose={close} closeOnClickOutside centered>
+            <Card key={index}>
+              <ActionIcon>
+                <IconPlus onClick={open} />
+                <Modal
+                  opened={opened}
+                  onClose={close}
+                  closeOnClickOutside
+                  Flexed
+                >
                   <PersonaTable />
-              </Modal>
-            </ActionIcon>
+                </Modal>
+              </ActionIcon>
+            </Card>
           );
         }
       };
 
       return (
-        <Card 
-          sx={{}} 
-          key={index}
-          onClick={() => selectForFusion(persona)} 
-          variant={isPersonaExists ? "filled" : "outline"}>
-          <Group>
-            <Text>{isPersonaExists ? persona.name : "Add Persona"}</Text>
-            {isArcanaExists()}
-          </Group>
+        <Card onClick={() => selectForFusion(persona)}>
+          {isPartySlot()}
         </Card>
+
       );
     });
 
-  
-    /* <td>
-<ActionIcon>
-<IconListDetails />
-</ActionIcon>
-</td>
-<td>
-<ActionIcon onClick={() => handleDeleteClick(persona)}>
-<IconTrash size="1.125rem" />
-</ActionIcon>
-</td>
-<td>
-<Button onClick={() => selectFirst(persona)}>Select</Button>
-</td>
-<td>  
-<Button onClick={() => selectSecond(persona)}>Select</Button>
-</td> 
-</tr>
-));
-*/
-  
-
   return (
-    <Container>
+    <Box>
+      <Card>{result}</Card>
+
+      <SimpleGrid cols={2}>
+      <Card>
+        <Text>{firstToFuse.name}</Text>
+      </Card>
+      <Card>
+        <Text>{secondToFuse.name}</Text>
+      </Card>
+      </SimpleGrid>
+
+      <Button onClick={() => handleFusion(firstToFuse, secondToFuse)}>
+        F U S E
+      </Button>
       <Group>
         <SimpleGrid cols={2}>{rows}</SimpleGrid>
-        <Card sx={{ height: '10rem', width: '10rem' }}>
-          <Text>{firstToFuse.name}</Text>
-        </Card>
-        <Card sx={{ height: '10rem', width: '10rem' }}>
-          <Text>{secondToFuse.name}</Text>
-        </Card>
-        <Card>{result}</Card>
-        <Button onClick={() => handleFusion(firstToFuse, secondToFuse)}>
-          F U S E
-        </Button>
       </Group>
-    </Container>
+    </Box>
   );
 }
 

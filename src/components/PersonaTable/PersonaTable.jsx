@@ -56,14 +56,17 @@ function PersonaTable(props) {
     ));
 
   return (
-    <Container>
+    <Container
+      mx='auto'
+      p='0'
+      >
       <Table striped highlightOnHover>
         <thead>
           <tr>
             <th>Level</th>
             <th>Name</th>
             <th>Arcana</th>
-            <th>Add to Party</th>
+            <th>Add</th>
           </tr>
         </thead>
         <tbody>{tableRows}</tbody>

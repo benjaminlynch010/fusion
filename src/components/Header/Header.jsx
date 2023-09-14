@@ -1,11 +1,10 @@
 import React from 'react'
 import './Header.css'
-
 import { Image } from '@mantine/core'
 
 function Header() {
   return (
-    <Image src={require('./reloadHeader.png')} />
+    <Image className='header' src={require('./reloadHeader.png')} />
   )
 }
 
