@@ -21,6 +21,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import PersonaTable from "../PersonaTable/PersonaTable";
 import UserParty from "../UserParty/UserParty";
+import Gallery from '../Gallery/Gallery'
 
 
 
@@ -71,6 +72,10 @@ function App() {
 
           <Route exact path="/table">
             <PersonaTable />
+          </Route>
+
+          <Route exact path='/gallery'>
+            <Gallery />
           </Route>
 
           <ProtectedRoute 
