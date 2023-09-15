@@ -77,13 +77,7 @@ function PersonaTable(props) {
   
   
   // return (
-  //   <Select
-  //     label='Add to Party'
-  //     placeholder='Pick One'
-  //     searchable
-  //     onSearchChange={onSearchChange}
-  //     searchValue={searchValue}
-  //   />
+
   // )
 
 

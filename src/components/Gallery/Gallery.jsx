@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // Mantine
 
 import { Carousel } from '@mantine/carousel';
-import { Image, Center } from '@mantine/core'
+import { Box, Image, Center } from '@mantine/core'
 
 
 
@@ -23,8 +23,6 @@ function Gallery() {
       <Center>
         <Image
           src={persona.image}
-          height={800}
-          fit='contain'
         >
         </Image>
       </Center>
@@ -32,14 +30,18 @@ function Gallery() {
   ))
 
     return (
+      <Box>
+
       <Carousel
-      slideSize="100%"
+      height="100%"
       slideGap="md"
       loop
       align="start"
+      sx={{ flex: 1 }}
       >
         {personaSlide}
       </Carousel>
+        </Box>
     );
 }
 

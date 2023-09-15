@@ -20,7 +20,7 @@ import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import PersonaTable from "../PersonaTable/PersonaTable";
-import UserParty from "../UserParty/UserParty";
+import Calculator from "../Calculator/Calculator";
 import Gallery from '../Gallery/Gallery'
 
 
@@ -58,7 +58,7 @@ function App() {
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
-            exact path="/user"
+            exact path="/home"
           >
             <UserPage />
           </ProtectedRoute>
@@ -80,8 +80,8 @@ function App() {
 
           <ProtectedRoute 
             // logged in will show user party else shows LoginPage
-            exact path="/party">
-            <UserParty />
+            exact path="/calculator">
+            <Calculator />
           </ProtectedRoute>
 
           <Route exact path="/login">

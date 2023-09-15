@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-// Basic functional component structure for React with default state
-// value setup. When making a new component be sure to replace the
-// component name TemplateFunction with the name for the new component.
-function MultiSelect() {
+import { Container, Flex } from '@mantine/core'
+
+
+function ChipBar() {
 
   const store = useSelector((store) => store);
 
@@ -60,4 +60,4 @@ function MultiSelect() {
   );
 }
 
-export default MultiSelect;
+export default ChipBar;

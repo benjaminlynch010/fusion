@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import PersonaTable from "../PersonaTable/PersonaTable";
 
+
 // Mantine
 import {
   ActionIcon,
@@ -12,7 +13,7 @@ import {
   Card,
   Center,
   Container,
-Image,
+  Image,
   Title,
   Group,
   SimpleGrid,
@@ -23,12 +24,9 @@ Image,
 import { useDisclosure } from "@mantine/hooks";
 import { IconTrash, IconPlus, IconListDetails } from "@tabler/icons-react";
 
-// Basic functional component structure for React with default state
-// value setup. When making a new component be sure to replace the
-// component name TemplateFunction with the name for the new component.
-function UserParty(props) {
-  // Using hooks we're creating local state for a "heading" variable with
-  // a default value of 'Functional Component'
+
+function Calculator() {
+
   const [heading, setHeading] = useState("Party");
   const party = useSelector((store) => store.party);
   const [firstToFuse, setFirstToFuse] = useState("");
@@ -79,17 +77,26 @@ function UserParty(props) {
   };
 
   const result = fusionResult.map((persona) => (
-    <Card pb='lg' key={persona.id}>
-    <Group sx={{ justifyContent: "right" }}>
-      <Badge>{persona.race}</Badge>
-    </Group>
-    <Group >
-      <Badge variant='filled'>{persona.lvl}</Badge>
-      <Title order={3}>{persona.name}</Title>
-    </Group>
-    <Group position='right' pt='md'>
-      <Button variant='light'>Details</Button>
-    </Group>
+    <Card key={persona.id} shadow="sm" padding="lg" radius="md" withBorder>
+      <Card.Section>
+        <Image
+          src={persona.image}
+          height={200}
+          fit="contain"
+          alt="FusedPersona"
+        />
+      </Card.Section>
+
+      <Group position="apart" mt="md" mb="xs">
+        <Text weight={700}>{persona.name}</Text>
+        <Badge color="pink" variant="filled">
+          {persona.race}
+        </Badge>
+      </Group>
+
+      <Button variant="subtle" color="pink" fullWidth mt="md" radius="md">
+        Details
+      </Button>
     </Card>
   ));
 
@@ -100,23 +107,19 @@ function UserParty(props) {
       const isPartySlot = () => {
         if (persona) {
           return (
-            <Card key={index}
-              onClick={() => selectForFusion(persona)}
-              >
-              <Text weight={500}>{persona.name}</Text>
-              <Badge>{persona.race}</Badge>
-              <Image>{persona.image}</Image>
-
-              <ActionIcon onClick={() => handleDeleteClick(persona)}>
-                <IconTrash />
-              </ActionIcon>
-            </Card>
+            <ActionIcon size='4rem'>
+              <Image 
+                key={index}
+                src={persona.image}
+                fit='contain'
+                onClick={() => selectForFusion(persona)}
+                />
+            </ActionIcon>
           );
         } else {
           return (
-            <Card key={index}>
-              <ActionIcon>
-                <IconPlus onClick={open} />
+              <ActionIcon size='4rem' variant='outline' radius='50%'>
+                <IconPlus stroke={2} onClick={open} />
                 <Modal
                   opened={opened}
                   onClose={close}
@@ -125,15 +128,15 @@ function UserParty(props) {
                   <PersonaTable />
                 </Modal>
               </ActionIcon>
-            </Card>
+
           );
         }
       };
 
       return (
-        <Card key={index}>
+        <Container>
           {isPartySlot()}
-        </Card>
+        </Container>
 
       );
     });
@@ -141,25 +144,33 @@ function UserParty(props) {
   return (
     <Box>
       <Card>{result}</Card>
-
       <SimpleGrid cols={2}>
-      <Card>
-        <Text>{firstToFuse.name}</Text>
-        <Image src={firstToFuse.image}></Image>
-      </Card>
-      <Card>
-        <Text>{secondToFuse.name}</Text>
-      </Card>
+        <Card>
+          <Image 
+            src={firstToFuse.image} 
+            height='125px' 
+            width='125px'
+            fit='contain'
+            />
+        </Card>
+        <Card>
+          <Image 
+            src={secondToFuse.image} 
+            height='125px' 
+            width='125px'
+            fit='contain'
+            />
+        </Card>
       </SimpleGrid>
 
       <Button onClick={() => handleFusion(firstToFuse, secondToFuse)}>
         F U S E
       </Button>
       <Group>
-        <SimpleGrid cols={2}>{rows}</SimpleGrid>
+        <SimpleGrid cols={4}>{rows}</SimpleGrid>
       </Group>
     </Box>
   );
 }
 
-export default UserParty;
+export default Calculator;

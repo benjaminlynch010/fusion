@@ -17,11 +17,10 @@ function Nav() {
   //{user.id && ()}
   return (
       <>
+
       <Image 
       className='header' 
       src={require('./reloadHeader.png')}
-      pos='fixed'
-      ZIndex='-1'
       />
 
       <Group
@@ -30,8 +29,6 @@ function Nav() {
         mx='md'
         pt='lg'
         mb='3rem'
-        pos='relative'
-        
         >
         <Link to="/home">
           <IconHome2 stroke={2} />
@@ -41,7 +38,6 @@ function Nav() {
         </Link>
         <LogOutButton />
       </Group>
-
   </>
   );
 }
