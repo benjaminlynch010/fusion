@@ -11,7 +11,7 @@ import {
   Box,
   Button,
   Card,
-  Center,
+  Flex,
   Container,
   Image,
   Title,
@@ -46,15 +46,13 @@ function Calculator() {
     dispatch({ type: "DELETE_FROM_PARTY", payload: persona });
   };
 
+  const handleClear = () => {
+    dispatch({ type: 'CLEAR_PARTY' })
+  }
+
   const handleAddResult = (persona) => {
     dispatch({ type: 'ADD_TO_PARTY', payload: persona })
-    notifications.show({
-      title: 'Nice Click!',
-      message: 'Added to party',
-      color: 'pink',
-      icon: <IconCheck />,
-      autoClose: 5000,
-    })
+
     dispatch({ type: 'FETCH_PERSONAS'})
     dispatch({ type: 'FETCH_PARTY'})
   }
@@ -78,6 +76,16 @@ function Calculator() {
 
   const result = fusionResult.map((persona) => (
     <Card key={persona.id} shadow="sm" padding="lg" radius="md" withBorder>
+      <Group position='right'>
+        <ActionIcon 
+          variant='filled' 
+          color='pink' 
+          radius='50%'
+          onClick={() => handleAddResult(persona)}
+          >
+          <IconPlus />
+        </ActionIcon>
+      </Group>
       <Card.Section>
         <Image
           src={persona.image}

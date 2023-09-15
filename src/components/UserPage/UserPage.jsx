@@ -1,29 +1,22 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
-
+import { useHistory } from 'react-router-dom';
 
 // Mantine
-import { Container, Stack, NavLink } from '@mantine/core'
-
+import { Box, Stack, Button } from '@mantine/core'
+import { IconHome2 } from '@tabler/icons-react'
 
 function UserPage() {
 
-  const user = useSelector((store) => store.user);
+  const history = useHistory()
 
   return (
-    <Container>
-      <Stack 
-        align="stretch" 
-        justify="center"
-        spacing="lg">
-        <NavLink href="/">Fusion Calculator</NavLink>
-        <NavLink>Fusion Table</NavLink>
-        <NavLink>Gallery</NavLink>
-        <NavLink>About</NavLink>
-        <NavLink>Info</NavLink>
+    <Box>
+      <Stack>
+        <Button onClick={() => {history.push('/calculator')}}>Calculator</Button>
+        <Button onClick={() => {history.push('/gallery')}}>Gallery</Button>
+        <Button onClick={() => {history.push('/table')}}>Table</Button>
       </Stack>
-    </Container>
+    </Box>
   );
 }
 

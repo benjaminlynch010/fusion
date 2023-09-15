@@ -20,7 +20,6 @@ root.render(
         withNormalizeCSS
         theme={{
           // Override any other properties from default theme
-
           colorScheme: "dark",
           fontFamily: 'SF Pro', 
         }}

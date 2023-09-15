@@ -51,4 +51,16 @@ router.delete("/del/:id", (req, res) => {
     res.sendStatus(500);
   });  
 })
+
+router.delete('/clear', (req, res) => {
+  const queryText = `
+  DELETE FROM party
+  `
+  pool.query(queryText)
+  .then(() => res.sendStatus(201))
+  .catch((err) => {
+    console.log('Cannot clear party.', err)
+    res.sendStatus(500)
+  })
+})
 module.exports = router;
