@@ -12,7 +12,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   console.log('Getting Persona List')
   const queryText = `
   SELECT * FROM personas
-  ORDER BY personas.name ASC;
+  ORDER BY personas.lvl ASC;
   `
   pool.query(queryText)
   .then((result) => {
