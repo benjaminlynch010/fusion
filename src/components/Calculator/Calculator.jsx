@@ -22,12 +22,12 @@ import {
 
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconTrash, IconPlus, IconListDetails } from "@tabler/icons-react";
+import { IconPlus, } from "@tabler/icons-react";
 
 
 function Calculator() {
 
-  const [heading, setHeading] = useState("Party");
+
   const party = useSelector((store) => store.party);
   const [firstToFuse, setFirstToFuse] = useState("");
   const [secondToFuse, setSecondToFuse] = useState("");
@@ -108,6 +108,8 @@ function Calculator() {
     </Card>
   ));
 
+  // limiting party display to 8 characters
+  // TODO implement server side logic, this only limits display
   const rows = Array(8)
     .fill(null)
     .map((_, index) => {
@@ -115,7 +117,11 @@ function Calculator() {
       const isPartySlot = () => {
         if (persona) {
           return (
-            <ActionIcon size='4rem'>
+            <ActionIcon 
+              size='4rem'
+              p='xs'
+              >
+
               <Image 
                 key={index}
                 src={persona.image}
@@ -153,28 +159,42 @@ function Calculator() {
     <Box>
       <Card>{result}</Card>
       <SimpleGrid cols={2}>
-        <Card>
-          <Image 
-            src={firstToFuse.image} 
-            height='125px' 
-            width='125px'
-            fit='contain'
-            />
-        </Card>
-        <Card>
-          <Image 
-            src={secondToFuse.image} 
-            height='125px' 
-            width='125px'
-            fit='contain'
-            />
-        </Card>
+
+          <Card
+            align='center'
+          >
+            <Image 
+              src={firstToFuse.image} 
+              height='100px' 
+              width='100px'
+              fit='contain'
+              />
+          </Card>
+          <Card
+            align='center'
+          >
+            <Image 
+              src={secondToFuse.image} 
+              height='100px' 
+              width='100px'
+              fit='contain'
+              />
+          </Card>
+
       </SimpleGrid>
 
-      <Button onClick={() => handleFusion(firstToFuse, secondToFuse)}>
-        F U S E
-      </Button>
-      <Group>
+      <Flex 
+        p='lg'
+        position='center'
+        align='center'
+        justify="space-around"
+
+        >
+        <Button onClick={() => handleFusion(firstToFuse, secondToFuse)}>F U S E</Button>
+        <Button onClick={() => handleClear()}>Clear Party</Button>
+      </Flex>
+
+      <Group p='xl'>
         <SimpleGrid cols={4}>{rows}</SimpleGrid>
       </Group>
     </Box>
