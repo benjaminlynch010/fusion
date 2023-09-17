@@ -73,15 +73,6 @@ function PersonaTable(props) {
       </Table>
     </Container>
   );
-  
-  
-  
-  // return (
-
-  // )
-
-
-
 }
 
 

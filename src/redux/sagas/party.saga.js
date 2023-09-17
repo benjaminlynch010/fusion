@@ -39,11 +39,21 @@ function* clearParty(action) {
   }
 }
 
+function* nameParty(action) {
+  try {
+    console.log('nameParty payload: ', action.payload)
+    yield axios.put(`/api/party/change-name`, action.payload)
+  } catch (err) {
+    alert('Cannot update name.  Try again later.', err)
+  }
+}
+
 function* partySaga() {
   yield takeLatest('FETCH_PARTY', fetchParty)
   yield takeLatest('ADD_TO_PARTY', addToParty)
   yield takeLatest('DELETE_FROM_PARTY', deleteFromParty)
   yield takeLatest('CLEAR_PARTY', clearParty)
+  yield takeLatest('CHANGE_PARTY_NAME', nameParty)
 }
 
 

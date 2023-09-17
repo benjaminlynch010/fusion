@@ -2,10 +2,12 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
-router.get('/', (req, res) => {
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
+
+
+router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
   console.log('Getting Persona List')
   const queryText = `
@@ -21,7 +23,7 @@ router.get('/', (req, res) => {
   })
 });
 
-router.get('/fusion/', (req, res) => {
+router.get('/fusion/', rejectUnauthenticated, (req, res) => {
   // GET route code here
   const { arcanaResult, levelResult } = req.query;
   console.log('at server', levelResult)
@@ -40,13 +42,6 @@ router.get('/fusion/', (req, res) => {
   .catch((error) => {
     res.sendStatus(500)
   })
-});
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
-
 });
 
 module.exports = router;

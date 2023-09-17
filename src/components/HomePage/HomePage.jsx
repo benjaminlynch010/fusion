@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 
 // Mantine
 import { Box, Stack, Button } from '@mantine/core'
-import { IconHome2 } from '@tabler/icons-react'
 
-function UserPage() {
+
+function HomePage() {
 
   const history = useHistory()
 
@@ -21,4 +21,4 @@ function UserPage() {
 }
 
 // this allows us to use <App /> in index.js
-export default UserPage;
+export default HomePage;
