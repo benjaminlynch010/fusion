@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Mantine
-import { Container, Center, Card, TextInput, Title, Button, SimpleGrid } from '@mantine/core'
+import { Box, Container, Center, Checkbox, Card, Group, Stack, TextInput, Text, Title, Button, SimpleGrid } from '@mantine/core'
+
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -23,40 +24,31 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
+    <form className="formPanel" onSubmit={registerUser}> 
+
+      <Stack>
       <Title order={2}>Register User</Title>
       {errors.registrationMessage && (
-        <h3 className="alert" role="alert">
+        <Text className="alert" role="alert">
           {errors.registrationMessage}
-        </h3>
+        </Text>
       )}
-      <div>
-        <label htmlFor="username">
-          Username:
           <TextInput
-            type="text"
-            name="username"
+            label="Username"
+            placeholder="username"
             value={username}
             required
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
           <TextInput
-            type="password"
-            name="password"
+            label="Password"
+            placeholder="password"
             value={password}
             required
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
         <Button type="submit" name="submit" value="Register">Register</Button>
-      </div>
+        </Stack>
     </form>
   );
 }

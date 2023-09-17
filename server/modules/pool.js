@@ -28,7 +28,7 @@ else {
     pool = new pg.Pool({
         host: 'localhost',
         port: 5432,
-        database: 'megaten_p3',   // 	💥 Change this to the name of your database!
+        database: 'R3LOAD',
     });
 }
 

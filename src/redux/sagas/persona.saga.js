@@ -4,7 +4,6 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* fetchPersonas() {
   try {
     const response = yield axios.get('/api/personas')
-
     yield put({ type: 'SET_PERSONAS', payload: response.data })
   } 
   catch (err) {

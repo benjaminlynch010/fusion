@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { IconCheck, IconX } from '@tabler/icons-react';
-
 
 // Mantine
 import {
-  Button, Container, Flex, MultiSelect, Table, Text
+  Button, Container, Flex, MultiSelect, Table, Text, ActionIcon
  } from '@mantine/core'
+import { IconCheck, IconPlus } from '@tabler/icons-react';
 import { notifications } from '@mantine/notifications'
 
 // Basic functional component structure for React with default state
@@ -15,17 +14,16 @@ import { notifications } from '@mantine/notifications'
 function PersonaTable(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
-  
 
-  const [heading, setHeading] = useState(`Personas`);
   const personas = useSelector((store) => store.personas);
 
-
+  // gets updated list of all personas to render on page load
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({ type: 'FETCH_PERSONAS' });
   }, [dispatch]);
 
+  // dispatches to persona saga and renders success notification
   const handleClick = (persona) => {
     dispatch({ type: 'ADD_TO_PARTY', payload: persona })
     notifications.show({
@@ -36,56 +34,46 @@ function PersonaTable(props) {
       autoClose: 5000,
     })
     dispatch({ type: 'FETCH_PERSONAS'})
+    dispatch({ type: 'FETCH_PARTY'})
   }
-
-    const rows = personas.map((persona) => (
+  
+    const tableRows = personas.map((persona) => (
       <tr key={persona.id}>
         <td>{persona.lvl}</td>
         <td>{persona.name}</td>
         <td>{persona.race}</td>
-        <td><Button onClick={() => handleClick(persona)}>Add</Button></td>
+        <td>
+          <ActionIcon 
+            onClick={() => handleClick(persona)}
+            variant="filled"
+            radius="50%"
+            color="pink"
+            >
+            <IconPlus />
+          </ActionIcon>
+        </td>
       </tr>
     ));
 
   return (
-    <Container>
-      <Text>{heading}</Text>
-      <Flex
-      mih={50}
-      gap="xs"
-      justify="center"
-      align="center"
-      direction="row"
-      wrap="wrap"
-    >
-          <MultiSelect
-      data={[
-        'Chariot', 'Death', 'Devil', 'Emperor', 'Empress', 'Fool', 
-        'Fortune', 'Hanged', 'Hermit', 'Hierophant', 'Judgement', 
-        'Justice', 'Lovers', 'Magician', 'Moon', 'Preistess', 
-        'Star', 'Strength', 'Sun', 'Temperance', 'Tower'
-      ]}
-      label="Narrow Results"
-      placeholder="Select Arcana"
-      clearButtonProps={{ 'aria-label': 'Clear selection' }}
-      clearable
-      searchable
-    />
-      <Button>Sort</Button>
-      </Flex>
-    <Table striped highlightOnHover>
-      <thead>
-        <tr>
-          <th>Level</th>
-          <th>Name</th>
-          <th>Arcana</th>
-          <th>Add to Party</th>
-        </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </Table>
+    <Container
+      mx='auto'
+      p='0'
+      >
+      <Table striped highlightOnHover>
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>Name</th>
+            <th>Arcana</th>
+            <th>Add</th>
+          </tr>
+        </thead>
+        <tbody>{tableRows}</tbody>
+      </Table>
     </Container>
   );
 }
+
 
 export default PersonaTable;

@@ -2,16 +2,18 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 
-/**
- * GET route template
- */
-router.get("/", (req, res) => {
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
+
+// GET Party
+router.get("/", rejectUnauthenticated, (req, res) => {
   // GET route code here
   console.log("Getting Party");
   const queryText = `
   SELECT * FROM personas
   JOIN party ON personas.id = party.persona_id
-  ORDER BY personas.lvl ASC;`;
+  ORDER BY party.id ASC;`;
   pool.query(queryText)
     .then((result) => {
       res.send(result.rows);
@@ -22,7 +24,7 @@ router.get("/", (req, res) => {
 });
 
 // POST persona to party
-router.post("/add", (req, res) => {
+router.post("/add", rejectUnauthenticated, (req, res) => {
   console.log(req.body)
   const personaID = req.body.id
   const queryText = `
@@ -38,7 +40,7 @@ router.post("/add", (req, res) => {
 });
 
 // DELETE persona from party
-router.delete("/del/:id", (req, res) => {
+router.delete("/del/:id", rejectUnauthenticated, (req, res) => {
   console.log(req.params.id)
   const personaID = req.params.id
   const queryText = `
@@ -50,5 +52,30 @@ router.delete("/del/:id", (req, res) => {
     console.log(`Cannot remove from party ${err}`);
     res.sendStatus(500);
   });  
+})
+
+router.delete('/clear', rejectUnauthenticated, (req, res) => {
+  const queryText = `
+  DELETE FROM party
+  `
+  pool.query(queryText)
+  .then(() => res.sendStatus(201))
+  .catch((err) => {
+    console.log('Cannot clear party.', err)
+    res.sendStatus(500)
+  })
+})
+
+router.put('/change-name/', rejectUnauthenticated, (req, res) => {
+  const partyName = req.body.heading
+  const queryText = `
+  UPDATE party
+  SET party_name = $1
+  `
+  pool.query(queryText, [partyName])
+  .then(() => res.sendStatus(201))
+  .catch((err) => {
+    res.sendStatus(500)
+  })
 })
 module.exports = router;

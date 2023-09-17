@@ -25,12 +25,10 @@ function LandingPage() {
       <SimpleGrid>
         <Card>
           <RegisterForm />
-
             <Text>Already a Member?</Text>
             <Button size="sm"  onClick={onLogin}>
               Login
             </Button>
-
         </Card>
       </SimpleGrid>
     </Container>
