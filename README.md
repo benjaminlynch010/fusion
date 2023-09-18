@@ -20,7 +20,7 @@ To get started with iFuse, follow these steps:
 
 3. Set up the database by using the `database.sql` file provided. If you're not using Postgres, ensure you check the command syntax for your database system.
 
-4. To populate the database with persona data, you can use the scripts provided to import data from a JSON object. Detailed instructions for this step can be found in a separate repository included in this project.
+4. To populate the database with persona data, you can use the scripts provided to import data from the included JSON object. Detailed instructions for this step can be found in a separate repository included in this project.
 
 5. Additionally, there's a batch of images with Persona names as file names. You can insert these images into the database by matching the names already in the database. This will help you have working images for around 125 personas out of the 150 in the game. You can optimize this process by adding conditional logic to handle two-word persona names with spaces.
 
@@ -34,7 +34,8 @@ For deploying your iFuse application, consider using a platform like Heroku for 
 
 ## Built With
 
-iFuse was built with a lot of dedication and effort, with a special mention of blood, sweat, and tears (mostly tears).
+iFuse was built with a lot of dedication and effort,
+React, Express, PostgreSQL, JavaScript, node, Mantine UI
 
 ## Versioning
 
