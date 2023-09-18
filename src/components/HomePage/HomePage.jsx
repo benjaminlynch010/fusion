@@ -1,9 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+import HeroLoop from '../HeroLoop/HeroLoop'
+
 // Mantine
 import { Box, Stack, Button } from '@mantine/core'
-
 
 function HomePage() {
 
@@ -11,14 +12,14 @@ function HomePage() {
 
   return (
     <Box>
-      <Stack>
-        <Button onClick={() => {history.push('/calculator')}}>Calculator</Button>
-        <Button onClick={() => {history.push('/gallery')}}>Gallery</Button>
-        <Button onClick={() => {history.push('/table')}}>Table</Button>
+      <HeroLoop />
+      <Stack px='xl'>
+        <Button color='pink' onClick={() => {history.push('/calculator')}}>Calculator</Button>
+        <Button color='pink' onClick={() => {history.push('/gallery')}}>Gallery</Button>
+        <Button color='pink' onClick={() => {history.push('/table')}}>Table</Button>
       </Stack>
     </Box>
   );
 }
 
-// this allows us to use <App /> in index.js
 export default HomePage;

@@ -17,15 +17,15 @@ function Nav() {
   //{user.id && ()}
   return (
       <>
-
-      <Image 
-      className='header' 
-      src={require('./reloadHeader.png')}
-      />
+      <Group >
+        <Image id='reload'
+        src={require('./reloadHeader.png')}
+        />
+      </Group>
 
       <Group
-        className="navbar"
-        spacing="xs"
+        id="navbar"
+        spacing="md"
         mx='md'
         pt='lg'
         mb='3rem'
