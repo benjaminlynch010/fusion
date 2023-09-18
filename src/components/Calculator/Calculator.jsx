@@ -14,7 +14,6 @@ import {
   Flex,
   Container,
   Image,
-  Title,
   Group,
   SimpleGrid,
   Modal,
@@ -27,15 +26,17 @@ import { IconPlus, } from "@tabler/icons-react";
 
 function Calculator() {
 
-
+  // 
   const party = useSelector((store) => store.party);
+
   const [firstToFuse, setFirstToFuse] = useState("");
   const [secondToFuse, setSecondToFuse] = useState("");
   const [fusionMaterials, setFusionMaterials] = useState("");
+  
   const dispatch = useDispatch();
   const fusionResult = useSelector((store) => store.result);
 
-  // open & close for Modal
+  // open & close window for Modal
   const [opened, { open, close }] = useDisclosure(false);
 
   useEffect(() => {

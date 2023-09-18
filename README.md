@@ -1,53 +1,57 @@
-# iFuse
+# iFuse - Persona 3 Fusion Calculator
 
-Fusion Calculator to be used with the original version ( and hopefully upcoming remake ) of Persona 3.
+iFuse is a Fusion Calculator designed for use with the original version of Persona 3 and any upcoming remakes. This tool helps players calculate and discover various persona fusion combinations.
 
 ## Getting Started
 
-Clone down the repo
-npm install 
+To get started with iFuse, follow these steps:
 
-### Setup
+1. Clone this repository to your local machine.
+   
+   ```
+   git clone https://github.com/benjaminlynch010/fusion.git
+   ```
 
-What things you need to install the software and how to install them
+2. Install the project dependencies using npm.
 
-There's a bunch of dependencies to install
-```
-npm install
-```
-Use the `database.sql` file to create a SQL database
-If you're not using Postgres, check the command syntax
+   ```
+   npm install
+   ```
 
-I wrote scripts to import data from a JSON object
-I ran it separately so I included the folder for the entire separate repo with it's own instructions
-I found a big batch of images later with Persona names as the file name, so I just wrote an insert for the default path using the name already in the database.  That gets around 125 working images ( out of 150 ).  If you add conditional logic to catch the spaces on two-word names you can save some time there.
+3. Set up the database by using the `database.sql` file provided. If you're not using Postgres, ensure you check the command syntax for your database system.
+
+4. To populate the database with persona data, you can use the scripts provided to import data from a JSON object. Detailed instructions for this step can be found in a separate repository included in this project.
+
+5. Additionally, there's a batch of images with Persona names as file names. You can insert these images into the database by matching the names already in the database. This will help you have working images for around 125 personas out of the 150 in the game. You can optimize this process by adding conditional logic to handle two-word persona names with spaces.
 
 ## Testing
 
-If you want automated testing, just import your preferred software and set it up however you want
+If you wish to implement automated testing for this project, you can import your preferred testing software and set it up according to your requirements.
 
 ## Deployment
-Prolly Heroku
+
+For deploying your iFuse application, consider using a platform like Heroku for easy deployment and hosting.
 
 ## Built With
-blood, sweat, & tears ( mostly tears )
+
+iFuse was built with a lot of dedication and effort, with a special mention of blood, sweat, and tears (mostly tears).
 
 ## Versioning
 
-This is it lol
+This is the initial release of iFuse.
 
-## Authors
+## Author
 
 * **Ben Lynch**
 
-See also the list of [contributors](https://github.com/benjaminlynch010/fusion/contributors) who participated in this project.
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License. See the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgments
 
-* Prime 
+Special thanks to:
+
+* Prime
 * Iolite
-* aqiu384.github.io for all the persona data
+* aqiu384.github.io for providing Persona data
